@@ -1,0 +1,27 @@
+//mixins
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow:inset $top $left $blur $color;
+        -moz-box-shadow:inset $top $left $blur $color;
+        box-shadow:inset $top $left $blur $color;
+    } @else {
+        -webkit-box-shadow: $top $left $blur $color;
+        -moz-box-shadow: $top $left $blur $color;
+        box-shadow: $top $left $blur $color;
+    }
+}
+
+@mixin transition($changeMode, $time, $type ) {
+    -webkit-transition: $changeMode $time $type;
+    -moz-transition: $changeMode $time $type;
+    -o-transition: $changeMode $time $type;
+    -ms-transition: $changeMode $time $type;
+}
+
+@mixin transform_translate($x_value, $y_value){
+    -moz-transform: translate($x_value, $y_value); 
+    -webkit-transform: translate($x_value, $y_value);  
+    -o-transform: translate($x_value, $y_value); 
+    -ms-transform: translate($x_value, $y_value); 
+     transform: translate($x_value, $y_value);   
+}

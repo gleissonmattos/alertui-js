@@ -6,7 +6,24 @@
 <link rel="stylesheet" type="text/css" href="../dist/assets/css/alertui.min.css">
 
 <body><button id="btAlert">Alert</button><button id="btConfirm">Confirm</button><button id="btPrompt">Prompt</button><button id="btNoteDefault">Note Default</button><button id="btNoteSuccess">Note Success</button><button id="btNoteError">Note Error</button>
-    <script src="../dist/assets/js/alertui.min.js"></script>
+    <script src="../dist/assets/js/alertui.js"></script>
+    <script>
+        (function() {
+            // cache vars
+
+            // show ALERT
+            document.getElementById("btAlert").addEventListener("click", function(e) {
+                e.preventDefault();
+
+                alertui.alert('Alert Ui', 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', [], function() {
+                    alert('callback teste');
+                });
+
+
+            });
+
+        })();
+    </script>
 </body>
 
 </html>

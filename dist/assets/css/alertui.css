@@ -1,0 +1,62 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700);
+
+.alert-ui {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Open Sans", sans-serif;
+}
+
+.alert-ui .altui-modal {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(32, 34, 37, 0.8);
+}
+
+.alert-ui .altui-dialog {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 12% auto;
+    border-radius: 3px;
+    outline: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1);
+}
+
+.alert-ui .altui-dialog .altui-header {
+    padding: 10px;
+    font-weight: 600;
+    color: #56595f;
+}
+
+.alert-ui .altui-dialog .altui-body {
+    padding: 0 13px 8px 13px;
+    font-size: 13px;
+}
+
+.alert-ui .altui-dialog .altui-footer {
+    padding: 10px 10px 10px 10px;
+    text-align: right;
+}
+
+.alert-ui .altui-dialog .altui-footer .alt-btn {
+    background: #6595ec;
+    border: none;
+    padding: 8px 23px;
+    border-radius: 3px;
+    margin-left: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+    outline: none;
+}

@@ -1,2 +1,23 @@
 block content
-script(src="../dist/assets/js/alertui.min.js")
+script(src="../dist/assets/js/alertui.js")
+script.
+    
+    ( function() {
+    // cache vars
+    
+    // show ALERT
+    document.getElementById("btAlert").addEventListener( "click", function(e) {
+        e.preventDefault();
+    
+        alertui.alert('Alert Ui'
+            , 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+            , []
+            , function(){
+                alert('callback teste');
+            }
+        );
+    
+    
+    });
+    
+    })();
