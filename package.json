@@ -1,0 +1,42 @@
+{
+  "name": "alert-ui-js",
+  "version": "1.0.0",
+  "main": "/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alert",
+    "ui",
+    "box",
+    "confirm",
+    "prompt",
+    "loading",
+    "ok",
+    "callback"
+  ],
+  "author": "Gleisson Ricardo",
+  "license": "MIT",
+  "description": "Vertical navigation tab ======",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-cssbeautify": "^0.1.3",
+    "gulp-html-beautify": "^1.0.1",
+    "gulp-jsbeautify": "^0.1.1",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-pug": "^3.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-watch": "^4.3.9"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "example"
+  }
+}
