@@ -72,8 +72,8 @@
           , noteTime = 6000
           , btCancelV = 'Cancel'
           , Generate   = {
-						
-								/**
+                
+                /**
                 * Create complete modal element
                 * @return elModal   - Alert Ui modal elemento
                 */
@@ -88,11 +88,76 @@
                 },
                 
                 /**
-                * Response alert dialog
-                * @param el {object} - Action element
-                * @param call {function} - The callback action after the dialog 
-                * @param alertEl {object} - The principal element the dialog
+                * Notification messaging type
+                * @param note {object}  -Object type Alert Ui notify 
                 */
+                note : function(note){
+                    
+                    var altUi
+                      , notify = document.createElement('div')
+                      , noteClass = '';
+                    
+                    //Prepared the type message
+                    switch (note.noteType) {
+                        case 'default':
+                            noteClass = 'note-default';
+                            break;
+                        case 'success':
+                            noteClass = 'note-success';
+                            break;
+                        case 'error':
+                            noteClass = 'note-error';
+                            break;
+                        default:
+                            noteClass = 'note-default';
+                    }
+                    
+                    //Set class in notify item
+                    proto.addClass(notify, 'altui-note');
+                    proto.addClass(notify, noteClass);
+                    
+                    //Set content value
+                    notify.innerHTML = note.content;
+                    
+                    //Insert notify in body element
+                    altUi = document.getElementsByClassName('alert-ui-note')[0];
+                    
+                    this.noteResponse(notify, note.onClose);
+                    
+                    if(altUi){
+                        altUi.insertBefore(notify, altUi.childNodes[0]);
+                    }   else{
+                            altUi = document.createElement('div'); 
+                            proto.addClass(altUi, 'alert-ui-note');
+                            
+                            altUi.insertBefore(notify, altUi.childNodes[0]);
+                            document.body.appendChild(altUi);
+                        }
+                
+                },
+                
+                promptResponse : function(el, call, alertEl, elDataIn){
+                    
+                    var reqValue;
+                    
+                    proto.addEvent(el, 'click', function(){
+                        reqValue = elDataIn.value;
+                        
+                        if(reqValue !== ''){
+                            //Prevent doble clicks
+                            el.setAttribute('disabled', 'disabled');
+                            proto.addClass(alertEl, 'alert-close');
+                            setTimeout(function(){
+                                proto.removeElement(alertEl);
+                                if(call !== undefined)
+                                    call(reqValue);
+                                    
+                            }, callTime);  
+                        } else
+                            elDataIn.focus();
+                    });
+                },
+                
                 alertResponse : function(el, call, alertEl){
                     proto.addEvent(el, 'click', function(){
                         //Prevent doble clicks
@@ -107,7 +172,27 @@
                     });
                     
                 },
-								
+                
+                noteResponse : function(el, call){
+                    proto.addEvent(el, 'click', function(){
+                        proto.addClass(el, 'note-close');
+                        setTimeout(function(){
+                            proto.removeElement(el);
+                            if(call !== undefined)
+                                call();
+                        }, callTime);   
+                    });
+                    
+                    setTimeout(function(){
+                        proto.addClass(el, 'note-close');
+                        setTimeout(function(){
+                            proto.removeElement(el);
+                            if(call !== undefined)
+                                call();
+                        }, callTime);
+                    }, noteTime);
+                },
+                
                 /**
                 * Messaging types option selected
                 * @param obj   - Object with the configurations
@@ -124,12 +209,10 @@
                       , btnOk  = document.createElement('button')
                       , btnCancel = document.createElement('button')
                       , modal
-                      , dataIn
-                    
-                    //Create modal element
+                      , dataIn;
+                     
                     modal = this.createModal();
-                    
-                    //Set elements class   
+                      
                     proto.addClass( altUi, 'alert-ui');
                     proto.addClass( altBox, 'altui-dialog' );
                     proto.addClass( altCm, 'altui-cmd' );
@@ -141,10 +224,10 @@
                     proto.addClass( btnCancel, 'alt-btn alt-default' );
 
                     proto.addClass(btClose, 'altui-close');
-										
-										if(altOpts.type === 'alert') {
-                    //Alert' type dialog specifications
                     
+                    if(altOpts.type === 'alert') {
+                        //Alert type dialog specifications  
+                        
                         //Set Title dialog
                         altHd.innerHTML = altOpts.title !== null 
                             ? altOpts.title 
@@ -156,23 +239,62 @@
                         //Set Button ok value    
                         btnOk.innerHTML = btOkv;
                         
-												//Set callback function
                         this.alertResponse(btnOk, altOpts.onok, altUi);
-                        
-												//add button 'OK' int footer
+    
+                            
                         altFt.appendChild(btnOk);
                         
                         
                     } else if(altOpts.type === 'confirm') {
-                        //Confirm' type dialog specifications
+                        //Confirm type dialog specifications  
+                        
+                        altHd.innerHTML = altOpts.title !== undefined
+                            ? altOpts.title 
+                            : 'Alert Ui';
+                            
+                        altBdy.innerHTML = altOpts.content; 
+                        
+                        //Set Buttons ok value    
+                        btnOk.innerHTML = btOkv;
+                        btnCancel.innerHTML = btCancelV;
+                        
+                        this.alertResponse(btnOk, altOpts.onok, altUi);
+                        this.alertResponse(btnCancel, altOpts.oncancel, altUi);
+                        
+                        altFt.appendChild(btnOk);
+                        altFt.appendChild(btnCancel);
                         
                     } else if(altOpts.type === 'prompt'){
-                        //Prompt' type dialog specifications
-                          
+                        //Confirm type prompt specifications 
+                        dataIn = document.createElement('input');
+                        dataIn.setAttribute('type', 'text');
+                        
+                        proto.addClass(dataIn, 'alt-input');
+                        
+                        altHd.innerHTML = altOpts.title !== undefined
+                            ? altOpts.title 
+                            : 'Prompt Ui';
+                            
+                        altBdy.innerHTML = altOpts.content; 
+                        altBdy.appendChild(dataIn);
+                        
+                        //Set Buttons ok value    
+                        btnOk.innerHTML = btOkv;
+                        btnCancel.innerHTML = btCancelV;
+                        
+                        this.promptResponse(btnOk, altOpts.onok, altUi, dataIn);
+                        this.alertResponse(btnCancel, altOpts.oncancel, altUi);
+                        
+                        altFt.appendChild(btnOk);
+                        altFt.appendChild(btnCancel);    
+                        
+                    } else if(altOpts.type === 'note'){
+                        
+                        altBdy.innerHTML = altOpts.content;     
                         
                     }
-										
-										altCm.appendChild(btClose);
+                    
+                    altCm.appendChild(btClose);
                     altBox.appendChild(altCm);
                     altBox.appendChild(altHd);
                     altBox.appendChild(altBdy);
@@ -186,19 +308,17 @@
                     this.alertResponse(btClose, altOpts.oncancel, altUi);
                     
                     document.body.appendChild(altUi);
-
-                },
+                }
                 
             };
         
-        
             /**
             * Return the functions types 
-            * @return {action} - Alert Ui functions
+            * @return alert ui function
             */
             return {
             
-            //alert
+            // alert
             alert: function(title, content, opts, onOk) {
                 alertConfig = {
   
@@ -211,7 +331,7 @@
                 }; Generate.message(alertConfig);
             },
             
-            //confirm
+            // confirm
             confirm: function(title, content, opts, onOk, onCancel) {
                    alertConfig = {
                        
@@ -225,7 +345,7 @@
                 }; Generate.message(alertConfig);
             },
             
-            //prompt
+            // prompt
             prompt: function(title, content, opts, onOk, onCancel) {
                 
                 alertConfig = {
@@ -241,11 +361,11 @@
                 
             },
             
-            //notify
+            // notify
             notify: function(noteType, content, opts, onClose) {
                 
                 noteConfig = {
-                    
+                       
                     noteType : noteType, 
                     content : content,
                     option : opts,
@@ -254,7 +374,7 @@
                 }; Generate.note(noteConfig);
                 
             },
-            
+        
         };
         
         

@@ -10,6 +10,7 @@
     width: 100%;
     height: 100%;
     font-family: $font-opensans;
+    z-index: 99999999;
     
     .altui-modal {
         position: fixed;
@@ -18,52 +19,101 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(32, 34, 37, 0.8);
+        background: rgba(32, 34, 37, 0.5);
+        @include animation (0s, .2s, fadeIn, 1);
     }    
  
     .altui-dialog {
         position: relative;
         width: 90%;
         max-width: 400px;
-        margin: 12% auto;
+        margin: 14% auto;
         border-radius: 3px;
         outline: 0;
         background-color: #fff;
         @include box-shadow (0, 19px, 38px, rgba(0, 0, 0, 0.1), false);
         
+        .altui-cmd {
+            position: absolute;
+            right: 10px;
+            
+            button {
+                width: 10px;
+                height: 10px;
+                margin-left: 5px;
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+            }
+            
+            .altui-close {
+                background: url(../img/alertui-close.png) no-repeat center center transparent;    
+            }
+            
+        }
+        
         .altui-header {
-            padding: 10px;
+            padding: 20px 30px 10px 30px;
             font-weight: 600;
             color: #56595f;
         }
         
         .altui-body {
-            padding: 0 13px 8px 13px;
+            padding: 0 30px 8px 30px;
             font-size: 13px;
+            color: #727782;
         }
         
         .altui-footer {
-            padding: 10px 10px 10px 10px;
+            padding: 10px 25px 15px 25px;
             text-align: right;
             
             .alt-btn {
-                background: $p_color;
+                background: transparent;
                 border: none;
                 padding: 8px 23px;
                 border-radius: 3px;
                 margin-left: 8px;
                 cursor: pointer;
-                text-transform: uppercase;
                 font-weight: 700;
                 outline: none;
-             
+                
+                &:hover, &:focus {
+                    background: #ececec;
+                }
+                
+                &:active {
+                    background: #e8e8e8;
+                }
+                
+                &.alt-primary {
+                    color: $p_color;
+                }
+                
+                &.alt-default {
+                    color: $p_color;
+                }
             }
         }
     }
-		
+    
 }
-
-
-
-
-
+.alert-ui-note {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 99999999;
+    
+    .altui-note {
+        position: relative;
+        font-family: 'Open Sans';
+        width: 100%;
+        bottom: 0;
+        margin: 0 auto 0 auto ;
+        padding: 15px 20px;
+        background: #5f70a0;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+		}
+}
