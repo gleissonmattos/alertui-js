@@ -31,6 +31,7 @@
         border-radius: 3px;
         outline: 0;
         background-color: #fff;
+        @include animation (0s, .4s, alertUiIn, 1);
         @include box-shadow (0, 19px, 38px, rgba(0, 0, 0, 0.1), false);
         
         .altui-cmd {
@@ -75,12 +76,14 @@
                 border-radius: 3px;
                 margin-left: 8px;
                 cursor: pointer;
+                text-transform: uppercase;
                 font-weight: 700;
                 outline: none;
                 
                 &:hover, &:focus {
                     background: #ececec;
                 }
+                
                 
                 &:active {
                     background: #e8e8e8;
@@ -96,6 +99,17 @@
             }
         }
     }
+     &.alert-close {
+            
+            .altui-modal {
+                @include animation (0s, .4s, fadeOut, 1);          
+            }
+            
+            .altui-dialog {
+                @include animation (0s, .4s, alertUiOut, 1);    
+            }
+            
+        }
     
 }
 .alert-ui-note {
@@ -115,5 +129,107 @@
         color: #fff;
         text-align: center;
         cursor: pointer;
-		}
+        @include animation (0s, .4s, alertUiNote, 1);
+        @include transition (all, .3s, ease-in-out);
+        
+        &.note-close {
+            @include animation (0s, .4s, alertNoteClose, 1);    
+        }
+    }
+}
+
+//Animations
+@include keyframes (fadeIn) {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@include keyframes (fadeOut) {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@include keyframes (alertUiNote) {
+    0% {
+        @include transform_translate(0, 100%);
+
+    }
+    100% {
+         @include transform_translate(0, 0);  
+    }
+}
+
+@include keyframes (alertNoteClose) {
+    0% {
+        @include transform_translate(0, 0);
+    }
+    100% {
+         @include transform_translate(0, 100%);  
+    }
+}
+
+@include keyframes (alertUiIn) {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.7);
+    -o-transform: scale(0.7);
+    transform: scale(0.7);
+  }
+  45% {
+    -webkit-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  80% {
+    -webkit-transform: scale(0.95);
+    -o-transform: scale(0.95);
+    transform: scale(0.95);
+  }
+  100% {
+     opacity: 1;
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+
+@include keyframes (alertUiOut) {
+    
+    0% {
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);    
+    }
+    
+    45% {
+       opacity: 1;
+        -webkit-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+    
+    80% { 
+        -webkit-transform: scale(0.7);
+        -o-transform: scale(0.7);
+        transform: scale(0.7);
+    }
+    
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(0.3);
+        -o-transform: scale(0.3);
+        transform: scale(0.3);
+    }
+  
+  
+  
 }

@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html>
-<title>Alert Ui</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-COMPATIBLE" content="IE-edge">
-<link rel="stylesheet" type="text/css" href="../dist/assets/css/alertui.min.css">
-<style>
-    html,
-    body {
-        -webkit-font-smoothing: antialiased;
-    }
-    
-    body {
-        margin: 0;
-        padding: 0;
-        top: 0;
-        position: absolute;
-        background: #f0f1f3;
-        width: 100%;
-    }
-    
-    body>button {
-        background: #fff;
-        border: solid 1px silver;
-        padding: 6px 10px;
-        margin: 21px 2px;
-        cursor: pointer;
-    }
-</style>
+
+<head>
+    <title>Alert Ui</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE-edge">
+    <link rel="stylesheet" type="text/css" href="../dist/assets/css/alertui.min.css">
+    <style>
+        html,
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            top: 0;
+            position: absolute;
+            background: #f0f1f3;
+            width: 100%;
+        }
+        
+        body>button {
+            border: none;
+            color: #969696;
+            padding: 7px 16px;
+            border-radius: 3px;
+            margin: 21px 2px;
+            cursor: pointer;
+            outline: none;
+            font-weight: 600;
+        }
+        
+        body>button:hover {
+            background: #d0d0d0;
+            color: #7b7b7b;
+        }
+    </style>
+</head>
 
 <body><button id="btAlert">Alert</button><button id="btConfirm">Confirm</button><button id="btPrompt">Prompt</button><button id="btNoteDefault">Note Default</button><button id="btNoteSuccess">Note Success</button><button id="btNoteError">Note Error</button>
     <script src="../dist/assets/js/alertui.js"></script>
@@ -65,7 +76,9 @@
                 e.preventDefault();
 
                 alertui.prompt('Prompt Ui', ' Ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?', [], function(_value) {
-                        alertui.notify('success', ' On the <strong>' + _value + '</strong> other hand, we denounce with righteous indignation.');
+
+                        alertui.alert('Alert example', 'On the <strong>' + _value + '</strong> other hand, we denounce with righteous indignation.', []);
+
                     }, function() {
                         alertui.notify('error', 'These cases are perfectly simple and easy to distinguish');
                     }
@@ -78,14 +91,22 @@
             document.getElementById("btNoteDefault").addEventListener("click", function(e) {
                 e.preventDefault();
 
-                alertui.notify('default', 'DEFAULT: Et harum quidem rerum facilis.'), [];
+                alertui.notify('default', 'DEFAULT: Et harum quidem rerum facilis.'), [],
+                    function() {
+                        alert('Callback OK');
+                    }
+
             });
 
             // show NOTIFICATION SUCCESS
             document.getElementById("btNoteSuccess").addEventListener("click", function(e) {
                 e.preventDefault();
 
-                alertui.notify('success', 'SUCCESS: Et harum quidem rerum facilis est et expedita distinctio.'), [];
+                alertui.notify('success', 'SUCCESS: Et harum quidem rerum facilis est et expedita distinctio.'), [],
+                    function() {
+                        alert('Callback OK');
+                    }
+
             });
 
 
@@ -93,7 +114,11 @@
             document.getElementById("btNoteError").addEventListener("click", function(e) {
                 e.preventDefault();
 
-                alertui.notify('error', 'ERROR: Et harum quidem rerum facilis est et expedita distinctio.'), [];
+                alertui.notify('error', 'ERROR: Et harum quidem rerum facilis est et expedita distinctio.'), [],
+                    function() {
+                        alert('Callback OK');
+                    }
+
             });
 
         })();

@@ -46,7 +46,12 @@ script.
                 , ' Ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?'
                 , []
                 , function(_value){
-                    alertui.notify('success', ' On the <strong>' + _value + '</strong> other hand, we denounce with righteous indignation.');
+                
+                   alertui.alert('Alert example'
+                        , 'On the <strong>' + _value + '</strong> other hand, we denounce with righteous indignation.'
+                        , []
+                    );
+                    
                 }
                 , function(){
                     alertui.notify('error', 'These cases are perfectly simple and easy to distinguish');
@@ -62,7 +67,11 @@ script.
             
             alertui.notify('default'
                 , 'DEFAULT: Et harum quidem rerum facilis.')
-                , [];
+                , []
+                , function(){
+                    alert('Callback OK');
+            }
+        
         });
     
         // show NOTIFICATION SUCCESS
@@ -71,7 +80,11 @@ script.
             
             alertui.notify('success'
                 , 'SUCCESS: Et harum quidem rerum facilis est et expedita distinctio.')
-                , [];
+                , []
+                , function(){
+                    alert('Callback OK');
+            }
+        
         });
         
         
@@ -81,7 +94,11 @@ script.
             
             alertui.notify('error'
                 , 'ERROR: Et harum quidem rerum facilis est et expedita distinctio.')
-                , [];
+                , []
+                , function(){
+                    alert('Callback OK');
+            }
+        
         });
 
     })();

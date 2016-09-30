@@ -1,30 +1,38 @@
 doctype html
-html 
-  title Alert Ui
-  meta(charset="utf-8")
-  meta(http-equiv="X-UA-COMPATIBLE" content="IE-edge")
-  link(rel="stylesheet" type="text/css" href="../dist/assets/css/alertui.min.css")
-  style.
-    html, body {
-      -webkit-font-smoothing: antialiased;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      top: 0;
-      position: absolute;
-      background: #f0f1f3;
-      width: 100%;
-    }
-    
-    body > button {
-      background: #fff;
-      border: solid 1px silver;
-      padding: 6px 10px;
-      margin: 21px 2px;
-      cursor: pointer;
-    }
+html
+  head
+    title Alert Ui
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-COMPATIBLE" content="IE-edge")
+    link(rel="stylesheet" type="text/css" href="../dist/assets/css/alertui.min.css")
+    style.
+      html, body {
+        -webkit-font-smoothing: antialiased;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        top: 0;
+        position: absolute;
+        background: #f0f1f3;
+        width: 100%;
+      }
       
-    
+      body>button {
+        border: none;
+        color: #969696;
+        padding: 7px 16px;
+        border-radius: 3px;
+        margin: 21px 2px;
+        cursor: pointer;
+        outline: none;
+        font-weight: 600;
+      }
+      body>button:hover {
+        background: #d0d0d0;
+        color: #7b7b7b;
+      }
+        
+      
   body
     block content
