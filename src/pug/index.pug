@@ -2,11 +2,24 @@ include includes/head.pug
 
     block content
     
-    button#btAlert Alert
-    button#btConfirm Confirm
-    button#btPrompt Prompt
-    button#btNoteDefault Note Default
-    button#btNoteSuccess Note Success
-    button#btNoteError Note Error
+    .demo-here
+        .demo-present
+            h1 Alert<span>Ui</span>.Js
+            p   AlertUiJs is a awesome javascript framework to 
+                |  increase experience and interaction of users in applications.
+            
+        button#btAlert Alert
+        button#btConfirm Confirm
+        button#btPrompt Prompt
+        button#btNoteDefault Note Default
+        button#btNoteSuccess Note Success
+        button#btNoteError Note Error
+        
+        .footer-present
+            a(href="https://github.com/gleissonmattos") 
+                img(src="http://pseudoramble.com/assets/images/github-icon.png")
+                | by <strong>Gleisson Matos</strong> | http://github.com/gleissonmattos
+                
     
     include includes/script-footer.pug
+    include includes/implements.pug

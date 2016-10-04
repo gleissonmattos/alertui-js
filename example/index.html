@@ -13,17 +13,28 @@
         }
         
         body {
+            position: absolute;
+            width: 100%;
+            top: 0;
             margin: 0;
             padding: 0;
-            top: 0;
-            position: absolute;
             background: #f0f1f3;
-            width: 100%;
+            background: #3a3c42;
+            color: #dcdcdc;
+            font-family: 'Open Sans', sans-serif;
         }
         
-        body>button {
+        .demo-here {
+            position: relative;
+            width: 100%;
+            padding: 11px;
+            margin: 7% auto;
+            max-width: 577px;
+        }
+        
+        .demo-here button {
             border: none;
-            color: #969696;
+            color: #414a50;
             padding: 7px 16px;
             border-radius: 3px;
             margin: 21px 2px;
@@ -32,96 +43,139 @@
             font-weight: 600;
         }
         
-        body>button:hover {
+        .demo-here button:hover {
             background: #d0d0d0;
             color: #7b7b7b;
+        }
+        
+        .demo-here button:focus {
+            background: silver;
+        }
+        
+        .footer-present {
+            margin-top: 50px;
+            padding: 18px 14px;
+            border: 1px solid #4f5052;
+        }
+        
+        .footer-present>* {
+            margin: 0;
+            font-weight: 400;
+            font-size: 13px;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .footer-present a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-present img {
+            width: 21px;
+            vertical-align: middle;
+            margin-right: 14px;
         }
     </style>
 </head>
 
-<body><button id="btAlert">Alert</button><button id="btConfirm">Confirm</button><button id="btPrompt">Prompt</button><button id="btNoteDefault">Note Default</button><button id="btNoteSuccess">Note Success</button><button id="btNoteError">Note Error</button>
+<body>
+    <div class="demo-here">
+        <div class="demo-present">
+            <h1>Alert<span>Ui</span>.Js</h1>
+            <p> AlertUiJs is a awesome javascript framework to increase experience and interaction of users in applications.</p>
+        </div><button id="btAlert">Alert</button><button id="btConfirm">Confirm</button><button id="btPrompt">Prompt</button><button id="btNoteDefault">Note Default</button><button id="btNoteSuccess">Note Success</button><button id="btNoteError">Note Error</button>
+        <div class="footer-present">
+            <a href="https://github.com/gleissonmattos"> <img src="http://pseudoramble.com/assets/images/github-icon.png">by <strong>Gleisson Matos</strong> | http://github.com/gleissonmattos</a>
+        </div>
+    </div>
     <script src="../dist/assets/js/alertui.js"></script>
     <script>
-        (function() {
-            // cache vars
+        var btAlert = document.getElementById("btAlert"),
+            btConfirm = document.getElementById("btConfirm"),
+            btPrompt = document.getElementById("btPrompt"),
+            btNoteDefault = document.getElementById("btNoteDefault"),
+            btNoteSuccess = document.getElementById("btNoteSuccess"),
+            btNoteError = document.getElementById("btNoteError");
 
-            // show ALERT
-            document.getElementById("btAlert").addEventListener("click", function(e) {
-                e.preventDefault();
+        // EXAMPLE alertui.alert()
+        btAlert.addEventListener("click", function(e) {
 
-                alertui.alert('Alert Ui', 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', [], function() {
-                    alertui.notify('default', 'Ut enim ad minima veniam.')
-                });
+            alertui.alert('Alert Ui',
+                'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                function() {
+                    alertui.notify('default', 'Ut enim ad minima veniam.');
+                }
+            );
 
+        });
 
-            });
+        // EXAMPLE alertui.confirm()
+        btConfirm.addEventListener("click", function(e) {
 
-            // show CONFIRM
-            document.getElementById("btConfirm").addEventListener("click", function(e) {
-                e.preventDefault();
+            alertui.confirm('Confirm Ui', ' Vel et elitr sadipscing consectetuer, usu cu maiestatis referrentur. Duo at tamquam nostrud, vel nonumy veritus eu.', function() {
+                    alertui.notify('success', 'Every pleasure is to be welcomed and every pain avoided.');
+                },
+                function() {
+                    alertui.notify('error', 'But in certain circumstances and owing to the claims.');
+                }
+            );
 
-                alertui.confirm('Confirm Ui', ' Vel et elitr sadipscing consectetuer, usu cu maiestatis referrentur. Duo at tamquam nostrud, vel nonumy veritus eu.', [], function() {
-                        alertui.notify('success', 'Every pleasure is to be welcomed and every pain avoided.');
-                    },
-                    function() {
-                        alertui.notify('error', 'But in certain circumstances and owing to the claims.');
-                    }
+        });
 
-                );
+        // EXAMPLE alertui.prompt()
+        btPrompt.addEventListener("click", function(e) {
 
-            });
+            alertui.prompt('Prompt Ui',
+                ' Ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?',
+                function(_value) {
+                    alertui.alert('',
+                        'On the <strong>' + _value.toString() + '</strong> other hand, we denounce with righteous indignation.'
+                    );
+                },
+                function() {
+                    alertui.notify('error',
+                        'These cases are perfectly simple and easy to distinguish'
+                    );
+                }
+            );
 
-            // show PROMPT
-            document.getElementById("btPrompt").addEventListener("click", function(e) {
-                e.preventDefault();
+        });
 
-                alertui.prompt('Prompt Ui', ' Ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?', [], function(_value) {
+        // EXAMPLE alertui.notify([DEFAULT])
+        btNoteDefault.addEventListener("click", function(e) {
 
-                        alertui.alert('Alert example', 'On the <strong>' + _value + '</strong> other hand, we denounce with righteous indignation.', []);
+            alertui.notify('default',
+                'DEFAULT: Et harum quidem rerum facilis.',
+                function() {
+                    alert('Callback OK');
+                }
+            );
 
-                    }, function() {
-                        alertui.notify('error', 'These cases are perfectly simple and easy to distinguish');
-                    }
+        });
 
-                );
+        // EXAMPLE alertui.notify([SUCCESS])
+        btNoteSuccess.addEventListener("click", function(e) {
 
-            });
+            alertui.notify('success',
+                'SUCCESS: Et harum quidem rerum facilis est et expedita distinctio.',
+                function() {
+                    alert('Callback OK');
+                }
+            );
 
-            // show NOTIFICATION DEFAULT
-            document.getElementById("btNoteDefault").addEventListener("click", function(e) {
-                e.preventDefault();
+        });
 
-                alertui.notify('default', 'DEFAULT: Et harum quidem rerum facilis.'), [],
-                    function() {
-                        alert('Callback OK');
-                    }
+        // EXAMPLE alertui.notify([ERROR])
+        btNoteError.addEventListener("click", function(e) {
 
-            });
+            alertui.notify('error',
+                'ERROR: Et harum quidem rerum facilis est et expedita distinctio.',
+                function() {
+                    alert('Callback OK');
+                }
+            );
 
-            // show NOTIFICATION SUCCESS
-            document.getElementById("btNoteSuccess").addEventListener("click", function(e) {
-                e.preventDefault();
-
-                alertui.notify('success', 'SUCCESS: Et harum quidem rerum facilis est et expedita distinctio.'), [],
-                    function() {
-                        alert('Callback OK');
-                    }
-
-            });
-
-
-            // show NOTIFICATION ERROR
-            document.getElementById("btNoteError").addEventListener("click", function(e) {
-                e.preventDefault();
-
-                alertui.notify('error', 'ERROR: Et harum quidem rerum facilis est et expedita distinctio.'), [],
-                    function() {
-                        alert('Callback OK');
-                    }
-
-            });
-
-        })();
+        });
     </script>
 </body>
 
