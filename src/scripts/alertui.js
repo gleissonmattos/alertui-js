@@ -288,7 +288,6 @@
                             
                         altFt.appendChild(btnOk);
                         
-                        
                     } else if(altOpts.type === 'confirm') {
                         //Confirm' type dialog specifications
                         
@@ -347,8 +346,12 @@
                         this.promptResponse(btnOk, altOpts.onok, altUi, dataIn);
                         this.alertResponse(btnCancel, altOpts.oncancel, altUi);
                         
+                        altOpts
+                        
                         altFt.appendChild(btnOk);
                         altFt.appendChild(btnCancel);    
+                        
+                        
                         
                         //Set key event in input element
                         proto.addEvent(dataIn, 'keydown', function(evt){
@@ -507,11 +510,10 @@
                 },
                 
                 // return alertui NOTIFICATION
-                notify: function(noteType, content, pdefault) {
+                notify: function(noteType, content) {
                     noteConfig = {
                         noteType : noteType, 
                         content  : content,
-                        iNvalue  : pdefault,
                     }; Generate.note(noteConfig);
                 },
         };
