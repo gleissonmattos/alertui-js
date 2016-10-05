@@ -11,7 +11,7 @@ AlertUi.js is a awesome javascript framework to increase experience and interact
   npm install gleissonmattos/alertui-js
 ```
 
-* Or you can just clone from GitHub. [Download (v1.0.0)](https://github.com/gleissonmattos/alertui-js.git).
+* Or you can just clone from GitHub. [Download (v1.0.1)](https://github.com/gleissonmattos/alertui-js.git).
 
 
 ## Integration
