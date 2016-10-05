@@ -33,7 +33,7 @@ Note: Verify img file ```dist/assets/img``` in your css file.
 
 The Alertui.js is of easy usage. You only need execute the code in your function event. 
 
-![screenshot](docs/alertex.gif) 
+![screenshot](docs/alertui.gif) 
 
 ### API
 - ``` alertui.alert(String, String, call(), [options]);```
