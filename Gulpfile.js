@@ -1,6 +1,6 @@
 'use strict';
 
-var appName = 'mxnavtab';
+var appName = 'alertui';
 
 //Gulp imports
 var gulp           = require('gulp')
