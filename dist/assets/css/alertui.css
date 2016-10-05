@@ -18,7 +18,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(32, 34, 37, 0.5);
+    background: rgba(32, 34, 37, 0.6);
     -webkit-animation-delay: 0s;
     -webkit-animation-duration: 0.2s;
     -webkit-animation-name: fadeIn;
@@ -54,25 +54,25 @@
     outline: 0;
     background-color: #fff;
     -webkit-animation-delay: 0s;
-    -webkit-animation-duration: 0.4s;
+    -webkit-animation-duration: 0.3s;
     -webkit-animation-name: alertUiIn;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-fill-mode: forwards;
     /* this prevents the animation from restarting! */
     -moz-animation-delay: 0s;
-    -moz-animation-duration: 0.4s;
+    -moz-animation-duration: 0.3s;
     -moz-animation-name: alertUiIn;
     -moz-animation-iteration-count: 1;
     -moz-animation-fill-mode: forwards;
     /* this prevents the animation from restarting! */
     -o-animation-delay: 0s;
-    -o-animation-duration: 0.4s;
+    -o-animation-duration: 0.3s;
     -o-animation-name: alertUiIn;
     -o-animation-iteration-count: 1;
     -o-animation-fill-mode: forwards;
     /* this prevents the animation from restarting! */
     animation-delay: 0s;
-    animation-duration: 0.4s;
+    animation-duration: 0.3s;
     animation-name: alertUiIn;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -97,7 +97,7 @@
 }
 
 .alert-ui .altui-dialog .altui-cmd .altui-close {
-    background: url(../img/alertui-close.png) no-repeat center center transparent;
+    background: url("../img/alertui-close.png") no-repeat center center transparent;
 }
 
 .alert-ui .altui-dialog .altui-header {
@@ -165,25 +165,25 @@
 
 .alert-ui.alert-close .altui-modal {
     -webkit-animation-delay: 0s;
-    -webkit-animation-duration: 0.4s;
+    -webkit-animation-duration: 0.3s;
     -webkit-animation-name: fadeOut;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-fill-mode: forwards;
     /* this prevents the animation from restarting! */
     -moz-animation-delay: 0s;
-    -moz-animation-duration: 0.4s;
+    -moz-animation-duration: 0.3s;
     -moz-animation-name: fadeOut;
     -moz-animation-iteration-count: 1;
     -moz-animation-fill-mode: forwards;
     /* this prevents the animation from restarting! */
     -o-animation-delay: 0s;
-    -o-animation-duration: 0.4s;
+    -o-animation-duration: 0.3s;
     -o-animation-name: fadeOut;
     -o-animation-iteration-count: 1;
     -o-animation-fill-mode: forwards;
     /* this prevents the animation from restarting! */
     animation-delay: 0s;
-    animation-duration: 0.4s;
+    animation-duration: 0.3s;
     animation-name: fadeOut;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -192,25 +192,25 @@
 
 .alert-ui.alert-close .altui-dialog {
     -webkit-animation-delay: 0s;
-    -webkit-animation-duration: 0.4s;
+    -webkit-animation-duration: 0.3s;
     -webkit-animation-name: alertUiOut;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-fill-mode: forwards;
     /* this prevents the animation from restarting! */
     -moz-animation-delay: 0s;
-    -moz-animation-duration: 0.4s;
+    -moz-animation-duration: 0.3s;
     -moz-animation-name: alertUiOut;
     -moz-animation-iteration-count: 1;
     -moz-animation-fill-mode: forwards;
     /* this prevents the animation from restarting! */
     -o-animation-delay: 0s;
-    -o-animation-duration: 0.4s;
+    -o-animation-duration: 0.3s;
     -o-animation-name: alertUiOut;
     -o-animation-iteration-count: 1;
     -o-animation-fill-mode: forwards;
     /* this prevents the animation from restarting! */
     animation-delay: 0s;
-    animation-duration: 0.4s;
+    animation-duration: 0.3s;
     animation-name: alertUiOut;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;

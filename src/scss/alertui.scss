@@ -19,7 +19,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(32, 34, 37, 0.5);
+        background: rgba(32, 34, 37, 0.6);
         @include animation (0s, .2s, fadeIn, 1);
     }    
  
@@ -31,7 +31,7 @@
         border-radius: 3px;
         outline: 0;
         background-color: #fff;
-        @include animation (0s, .4s, alertUiIn, 1);
+        @include animation (0s, $time-animation, alertUiIn, 1);
         @include box-shadow (0, 19px, 38px, rgba(0, 0, 0, 0.1), false);
         
         .altui-cmd {
@@ -48,7 +48,7 @@
             }
             
             .altui-close {
-                background: url(../img/alertui-close.png) no-repeat center center transparent;    
+                background: url($url-close-icon) no-repeat center center transparent;    
             }
             
         }
@@ -119,16 +119,14 @@
     }
      &.alert-close {
             
-            .altui-modal {
-                @include animation (0s, .4s, fadeOut, 1);          
-            }
-            
-            .altui-dialog {
-                @include animation (0s, .4s, alertUiOut, 1);    
-            }
-            
+        .altui-modal {
+            @include animation (0s, $time-animation, fadeOut, 1);          
         }
-    
+        
+        .altui-dialog {
+            @include animation (0s, $time-animation, alertUiOut, 1);    
+        }
+    }
 }
 .alert-ui-note {
     position: fixed;
@@ -148,7 +146,7 @@
         text-align: center;
         cursor: pointer;
         @include animation (0s, .4s, alertUiNote, 1);
-        @include transition (all, .3s, ease-in-out);
+        @include transition (all, $time-animation, $type-transition);
         
         &.note-default {
             background: #497dcc;
@@ -272,7 +270,4 @@
         -o-transform: scale(0.3);
         transform: scale(0.3);
     }
-  
-  
-  
 }

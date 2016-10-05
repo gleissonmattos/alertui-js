@@ -16,7 +16,7 @@
 
     var alertuiWin = window[namespace];
 
-    // common function which is often using
+    // functions to general utilizations
     var proto = {
 
         /**
@@ -103,23 +103,30 @@
 
 
     /**
-     * Alertui
+     * Alertui API
      * @return {action} options - The options object
      */
     function Alertui() {
-
-        var alertConfig = undefined,
-            noteConfig = undefined,
-            btOkv = 'Ok',
-            callTime = 500,
-            noteTime = 6000,
-            btCancelV = 'Cancel',
-            block = false,
+        //vars and default values
+        var alertConfig = undefined // Object config the alertui functions
+            ,
+            noteConfig = undefined // Object config the alertui notifications
+            ,
+            btOkv = 'Ok' // Default button primary
+            ,
+            btCancelV = 'Cancel' // Default button secundary
+            ,
+            callTime = 500 // Delay to callback execution
+            ,
+            noteTime = 6000 // Time default the exhibition the note
+            ,
+            block = false // Var 'block' to prevent doble clicks in actions
+            ,
             Generate = {
 
                 /**
                  * Create complete modal element
-                 * @return {object}   - Alert Ui modal elemento
+                 * @return {object}   - Alert Ui modal element
                  */
                 createModal: function() {
                     //Create modal panel fixed
@@ -161,10 +168,9 @@
                             setTimeout(function() {
                                 proto.removeElement(alertEl);
                                 if (call !== undefined)
-                                    call(reqValue);
+                                    call(reqValue); //Execute callback
 
                                 block = false;
-
                             }, callTime);
                         } else
                             elDataIn.focus();
@@ -189,14 +195,11 @@
                         proto.addClass(alertEl, 'alert-close');
                         setTimeout(function() {
                             proto.removeElement(alertEl);
-                            if (call !== undefined)
-                                call();
+                            if (call !== undefined) call(); //Execute callback
 
                             block = false;
-
                         }, callTime);
                     });
-
                 },
 
 
@@ -211,13 +214,10 @@
                         proto.addClass(el, 'note-close');
                         setTimeout(function() {
                             proto.removeElement(el);
-                            if (call !== undefined)
-                                call();
+                            if (call !== undefined) call(); //Execute callback
 
                             if (elCase.childNodes.length === 0)
                                 proto.removeElement(elCase);
-
-
                         }, callTime);
                     });
 
@@ -225,12 +225,10 @@
                         proto.addClass(el, 'note-close');
                         setTimeout(function() {
                             proto.removeElement(el);
-                            if (call !== undefined)
-                                call();
+                            if (call !== undefined) call(); //Execute callback
 
                             if (elCase.childNodes.length === 0)
                                 proto.removeElement(elCase);
-
                         }, callTime);
                     }, noteTime);
                 },
@@ -251,10 +249,16 @@
                         altFt = document.createElement('div'),
                         btnOk = document.createElement('button'),
                         btnCancel = document.createElement('button'),
-                        modal, dataIn, funckey;
+                        modal, dataIn
+
+                    //Prevent undefined object
+                    if (typeof altOpts.opt !== "object")
+                        altOpts.opt = {};
 
                     //Create modal element
                     modal = this.createModal();
+                    if (!("modal-close" in altOpts.opt))
+                        altOpts.opt["modal-close"] = true;
 
                     //Set elements class   
                     proto.addClass(altUi, 'alert-ui');
@@ -263,11 +267,12 @@
                     proto.addClass(altHd, 'altui-header');
                     proto.addClass(altBdy, 'altui-body');
                     proto.addClass(altFt, 'altui-footer');
-
                     proto.addClass(btnOk, 'alt-btn alt-primary');
                     proto.addClass(btnCancel, 'alt-btn alt-default');
-
                     proto.addClass(btClose, 'altui-close');
+
+                    //Set tabindex in dialog element
+                    altUi.setAttribute('tabindex', '0');
 
                     if (altOpts.type === 'alert') {
                         //Alert' type dialog specifications
@@ -280,8 +285,11 @@
                         //Set Content dialog
                         altBdy.innerHTML = altOpts.content;
 
-                        //Set Button ok value    
-                        btnOk.innerHTML = btOkv;
+                        //Set Button ok value
+                        if ("ok-value" in altOpts.opt)
+                            btnOk.innerHTML = altOpts.opt['ok-value'];
+                        else
+                            btnOk.innerHTML = btOkv;
 
                         this.alertResponse(btnOk, altOpts.onok, altUi);
 
@@ -297,9 +305,18 @@
 
                         altBdy.innerHTML = altOpts.content;
 
-                        //Set Buttons ok value    
-                        btnOk.innerHTML = btOkv;
-                        btnCancel.innerHTML = btCancelV;
+                        //Set Button ok value
+                        if ("ok-value" in altOpts.opt)
+                            btnOk.innerHTML = altOpts.opt['ok-value'];
+                        else
+                            btnOk.innerHTML = btOkv;
+
+                        //Set Button cancel value
+                        if ("cancel-value" in altOpts.opt)
+                            btnCancel.innerHTML = altOpts.opt['cancel-value'];
+                        else
+                            btnCancel.innerHTML = btCancelV;
+
 
                         this.alertResponse(btnOk, altOpts.onok, altUi);
                         this.alertResponse(btnCancel, altOpts.oncancel, altUi);
@@ -308,7 +325,6 @@
                         altFt.appendChild(btnCancel);
 
                     } else if (altOpts.type === 'prompt') {
-                        //Prompt' type dialog specifications
 
                         dataIn = document.createElement('input');
                         dataIn.setAttribute('type', 'text');
@@ -322,9 +338,18 @@
                         altBdy.innerHTML = altOpts.content;
                         altBdy.appendChild(dataIn);
 
-                        //Set Buttons ok value    
-                        btnOk.innerHTML = btOkv;
-                        btnCancel.innerHTML = btCancelV;
+                        //Set Button ok value
+                        if ("ok-value" in altOpts.opt)
+                            btnOk.innerHTML = altOpts.opt['ok-value'];
+                        else
+                            btnOk.innerHTML = btOkv;
+
+                        //Set Button cancel value
+                        if ("cancel-value" in altOpts.opt)
+                            btnCancel.innerHTML = altOpts.opt['cancel-value'];
+                        else
+                            btnCancel.innerHTML = btCancelV;
+
 
                         this.promptResponse(btnOk, altOpts.onok, altUi, dataIn);
                         this.alertResponse(btnCancel, altOpts.oncancel, altUi);
@@ -347,8 +372,6 @@
                                     proto.dispatchEvent(modal, 'click');
                                     break;
                             }
-                            //Remove event
-                            proto.removeEvent(document, 'keydown', funckey);
                         });
                     }
 
@@ -362,10 +385,10 @@
                     altUi.appendChild(altBox);
 
                     //Set Event close modal
-                    if (altOpts.type === 'alert') { //If alert default ok event
+                    if (altOpts.type === 'alert' && altOpts.opt["modal-close"]) { //If alert default ok event
                         this.alertResponse(modal, altOpts.onok, altUi);
                         this.alertResponse(btClose, altOpts.onok, altUi);
-                    } else {
+                    } else if (altOpts.opt["modal-close"]) {
                         this.alertResponse(modal, altOpts.oncancel, altUi);
                         this.alertResponse(btClose, altOpts.oncancel, altUi);
                     }
@@ -373,32 +396,30 @@
                     // Add Object alert in document body
                     document.body.appendChild(altUi);
 
+                    window.focus();
+
                     if (altOpts.type === 'prompt')
                         dataIn.focus(); //Focus in input in prompt
                     else {
-                        btnOk.focus();
-                        btnOk.blur(); //Prevent focus set click  
+                        altUi.focus();
                     }
 
                     //Set tecle function
-                    proto.addEvent(document, 'keydown',
-                        funckey = function(evt) {
-                            evt = evt || window.event;
-                            var key = evt.keyCode || evt.which;
-                            switch (key) {
-                                case 13:
-                                    btnOk.focus();
-                                    proto.dispatchEvent(btnOk, 'click');
-                                    break;
-                                case 27:
-                                    if (btnCancel)
-                                        btnCancel.focus();
-                                    proto.dispatchEvent(modal, 'click');
-                                    break;
-                            }
-                            //Remove this event
-                            proto.removeEvent(document, 'keydown', funckey);
-                        });
+                    proto.addEvent(altUi, 'keydown', function(evt) {
+                        evt = evt || window.event;
+                        var key = evt.keyCode || evt.which;
+                        switch (key) {
+                            case 13:
+                                btnOk.focus();
+                                proto.dispatchEvent(btnOk, 'click');
+                                break;
+                            case 27:
+                                if (btnCancel)
+                                    btnCancel.focus();
+                                proto.dispatchEvent(modal, 'click');
+                                break;
+                        }
+                    });
                 },
 
 
@@ -445,11 +466,8 @@
                         altUi.insertBefore(notify, altUi.childNodes[0]);
                         document.body.appendChild(altUi);
                     }
-
                     this.noteResponse(notify, note.onClose, altUi);
-
                 }
-
             };
 
 
@@ -459,47 +477,50 @@
          */
         return {
 
-            // return alertui.alert();
-            alert: function(title, content, onOk) {
+            // return alertui ALERT;
+            alert: function(title, content, onOk, option) {
                 alertConfig = {
                     type: 'alert',
                     title: title,
                     content: content,
-                    onok: onOk
+                    onok: onOk,
+                    opt: option
                 };
                 Generate.message(alertConfig);
             },
 
-            // return alertui.confirm();
-            confirm: function(title, content, onOk, onCancel) {
+            // return alertui CONFIRM;
+            confirm: function(title, content, onOk, onCancel, option) {
                 alertConfig = {
                     type: 'confirm',
                     title: title,
                     content: content,
                     onok: onOk,
-                    oncancel: onCancel
+                    oncancel: onCancel,
+                    opt: option
                 };
                 Generate.message(alertConfig);
             },
 
-            // return alertui.prompt();
-            prompt: function(title, content, onOk, onCancel) {
+            // return alertui PROMPT
+            prompt: function(title, content, onOk, onCancel, option) {
                 alertConfig = {
                     type: 'prompt',
                     title: title,
                     content: content,
                     onok: onOk,
-                    oncancel: onCancel
+                    oncancel: onCancel,
+                    opt: option
                 };
                 Generate.message(alertConfig);
             },
 
-            // return alertui.notification();
+            // return alertui NOTIFICATION
             notify: function(noteType, content, pdefault) {
                 noteConfig = {
                     noteType: noteType,
                     content: content,
-                    iNvalue: pdefault
+                    iNvalue: pdefault,
                 };
                 Generate.note(noteConfig);
             },

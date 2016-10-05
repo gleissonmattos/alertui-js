@@ -85,7 +85,7 @@
 <body>
     <div class="demo-here">
         <div class="demo-present">
-            <h1>Alert<span>Ui</span>.Js</h1>
+            <h1>Alert<span>Ui</span>.Js <small> | Options</small></h1>
             <p> AlertUiJs is a awesome javascript framework to increase experience and interaction of users in applications.</p>
         </div><button id="btAlert">Alert</button><button id="btConfirm">Confirm</button><button id="btPrompt">Prompt</button><button id="btNoteDefault">Note Default</button><button id="btNoteSuccess">Note Success</button><button id="btNoteError">Note Error</button>
         <div class="footer-present">
@@ -101,32 +101,39 @@
             btNoteSuccess = document.getElementById("btNoteSuccess"),
             btNoteError = document.getElementById("btNoteError");
 
-        // EXAMPLE alertui.alert()
+        // EXAMPLE alertui ALERT
         btAlert.addEventListener("click", function(e) {
 
-            alertui.alert('Alert Ui',
+            alertui.alert('No modal close',
                 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                 function() {
                     alertui.notify('default', 'Ut enim ad minima veniam.');
+                }, {
+                    "modal-close": false,
+                    "ok-value": "Got it"
                 }
             );
 
         });
 
-        // EXAMPLE alertui.confirm()
+        // EXAMPLE alertui CONFIRM
         btConfirm.addEventListener("click", function(e) {
 
-            alertui.confirm('Confirm Ui', ' Vel et elitr sadipscing consectetuer, usu cu maiestatis referrentur. Duo at tamquam nostrud, vel nonumy veritus eu.', function() {
+            alertui.confirm('Change values the buttons', ' Vel et elitr sadipscing consectetuer, usu cu maiestatis referrentur. Duo at tamquam nostrud, vel nonumy veritus eu.', function() {
                     alertui.notify('success', 'Every pleasure is to be welcomed and every pain avoided.');
                 },
                 function() {
                     alertui.notify('error', 'But in certain circumstances and owing to the claims.');
+                }, {
+                    "modal-close": true,
+                    "ok-value": "I know",
+                    "cancel-value": "Back"
                 }
             );
 
         });
 
-        // EXAMPLE alertui.prompt()
+        // EXAMPLE alertui PROMPT
         btPrompt.addEventListener("click", function(e) {
 
             alertui.prompt('Prompt Ui',
