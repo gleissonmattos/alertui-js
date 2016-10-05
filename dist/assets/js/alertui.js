@@ -249,7 +249,7 @@
                         altFt = document.createElement('div'),
                         btnOk = document.createElement('button'),
                         btnCancel = document.createElement('button'),
-                        modal, dataIn
+                        modal, dataIn;
 
                     //Prevent undefined object
                     if (typeof altOpts.opt !== "object")

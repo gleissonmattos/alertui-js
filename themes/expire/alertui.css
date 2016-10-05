@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700);
 /*
- * Alert Ui - v1.0.0
+ * Alert Ui - v1.0.0 | Theme Expire
  * Author: Gleisson Matos
  * https://github.com/gleissonmattos
  * MIT License (c) 2016 Gleisson Matos
@@ -55,7 +55,8 @@
     width: 90%;
     max-width: 400px;
     margin: 14% auto;
-    border-radius: 3px;
+    overflow: hidden;
+    border-radius: 4px;
     outline: 0;
     background-color: #fff;
     -webkit-animation-delay: 0s;
@@ -106,15 +107,17 @@
 }
 
 .alert-ui .altui-dialog .altui-header {
-    padding: 20px 30px 10px 30px;
+    padding: 12px 30px 11px;
     font-weight: 600;
-    color: #56595f;
+    color: #797d86;
+    border-bottom: 1px solid #f7f7f7;
+    background: #fbfbfb;
 }
 
 .alert-ui .altui-dialog .altui-body {
-    padding: 0 30px 8px 30px;
-    font-size: 13px;
-    color: #727782;
+    padding: 16px 30px 8px;
+    font-size: 12.4px;
+    color: #989ba2;
 }
 
 .alert-ui .altui-dialog .altui-body .alt-input {
@@ -136,23 +139,22 @@
 }
 
 .alert-ui .altui-dialog .altui-footer {
-    padding: 10px 25px 15px 25px;
+    padding: 10px 25px 10px;
     text-align: right;
 }
 
 .alert-ui .altui-dialog .altui-footer .alt-btn {
-    background: transparent;
+    background: 0 0;
     border: none;
     padding: 8px 23px;
     border-radius: 3px;
     margin-left: 8px;
     cursor: pointer;
-    text-transform: uppercase;
     font-weight: 700;
-    outline: none;
+    outline: 0;
 }
 
-.alert-ui .altui-dialog .altui-footer .alt-btn:hover, .alert-ui .altui-dialog .altui-footer .alt-btn:focus {
+.alert-ui .altui-dialog .altui-footer .alt-btn:focus {
     background: #ececec;
 }
 
@@ -161,11 +163,24 @@
 }
 
 .alert-ui .altui-dialog .altui-footer .alt-btn.alt-primary {
-    color: #6595ec;
+    background: #6595ec;
+    color: #fff;
+    letter-spacing: .5px;
+    border: 1px solid #6595ec;
+}
+
+.alert-ui .altui-dialog .altui-footer .alt-btn.alt-primary:hover {
+    background: #719dec;
 }
 
 .alert-ui .altui-dialog .altui-footer .alt-btn.alt-default {
-    color: #6595ec;
+    color: #858b94;
+    border: 1px solid #d8d7d7;
+}
+
+.alert-ui .altui-dialog .altui-footer .alt-btn.alt-default:hover {
+    background: #f7f6f6;
+    color: #74828c;
 }
 
 .alert-ui.alert-close .altui-modal {
