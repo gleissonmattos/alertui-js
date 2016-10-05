@@ -48,7 +48,8 @@ script.
                 alertui.notify('error', 
                     'These cases are perfectly simple and easy to distinguish'
                 );
-            }
+            },
+            'Default value'
         );
         
     });
@@ -57,10 +58,7 @@ script.
     btNoteDefault.addEventListener( "click", function(e) {
 
         alertui.notify('default', 
-            'DEFAULT: Et harum quidem rerum facilis.', 
-            function(){
-                alert('Callback OK');
-            }
+            'DEFAULT: Et harum quidem rerum facilis.'
         );
         
     });
@@ -69,10 +67,7 @@ script.
     btNoteSuccess.addEventListener( "click", function(e) {
 
         alertui.notify('success', 
-            'SUCCESS: Et harum quidem rerum facilis est et expedita distinctio.', 
-            function(){
-                alert('Callback OK');
-            }
+            'SUCCESS: Et harum quidem rerum facilis est et expedita distinctio.'
         );
         
     });
@@ -81,11 +76,7 @@ script.
     btNoteError.addEventListener( "click", function(e) {
     
         alertui.notify('error', 
-            'ERROR: Et harum quidem rerum facilis est et expedita distinctio.', 
-            function(){
-                alert('Callback OK');
-            }
+            'ERROR: Et harum quidem rerum facilis est et expedita distinctio.' 
         );
         
     });
-
