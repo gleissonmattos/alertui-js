@@ -98,7 +98,7 @@
          */
         removeElement: function(el) {
             (el && el.parentNode) && el.parentNode.removeChild(el);
-        },
+        }
     };
 
 
@@ -108,11 +108,9 @@
      */
     function Alertui() {
         //vars and default values
-        var alertConfig = undefined // Object config the alertui functions
-            ,
-            noteConfig = undefined // Object config the alertui notifications
-            ,
-            btOkv = 'Ok' // Default button primary
+        var alertConfig // Object config the alertui functions
+            , noteConfig // Object config the alertui notifications
+            , btOkv = 'Ok' // Default button primary
             ,
             btCancelV = 'Cancel' // Default button secundary
             ,
@@ -278,9 +276,7 @@
                         //Alert' type dialog specifications
 
                         //Set Title dialog
-                        altHd.innerHTML = altOpts.title !== null ?
-                            altOpts.title :
-                            'Alert Ui';
+                        altHd.innerHTML = altOpts.title !== null ? altOpts.title : 'Alert Ui';
 
                         //Set Content dialog
                         altBdy.innerHTML = altOpts.content;
@@ -298,9 +294,7 @@
                     } else if (altOpts.type === 'confirm') {
                         //Confirm' type dialog specifications
 
-                        altHd.innerHTML = altOpts.title !== undefined ?
-                            altOpts.title :
-                            'Alert Ui';
+                        altHd.innerHTML = altOpts.title !== undefined ? altOpts.title : 'Alert Ui';
 
                         altBdy.innerHTML = altOpts.content;
 
@@ -330,9 +324,7 @@
 
                         proto.addClass(dataIn, 'alt-input');
 
-                        altHd.innerHTML = altOpts.title !== undefined ?
-                            altOpts.title :
-                            'Prompt Ui';
+                        altHd.innerHTML = altOpts.title !== undefined ? altOpts.title : 'Prompt Ui';
 
                         altBdy.innerHTML = altOpts.content;
                         altBdy.appendChild(dataIn);
@@ -353,12 +345,8 @@
                         this.promptResponse(btnOk, altOpts.onok, altUi, dataIn);
                         this.alertResponse(btnCancel, altOpts.oncancel, altUi);
 
-                        altOpts
-
                         altFt.appendChild(btnOk);
                         altFt.appendChild(btnCancel);
-
-
 
                         //Set key event in input element
                         proto.addEvent(dataIn, 'keydown', function(evt) {
