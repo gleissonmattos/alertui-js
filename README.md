@@ -31,7 +31,8 @@ Note: Verify img file ```dist/assets/img``` in your css file.
 
 ## Getting started
 
-The Alertui.js is of easy usage. You only need execute the code in your function event. 
+The Alertui.js is of easy usage. You only need execute the code in your function event.
+Live example [click here](https://rawgit.com/gleissonmattos/alertui-js/master/example/index.html)
 
 ![screenshot](docs/alertui.gif) 
 
@@ -54,8 +55,6 @@ alertui.notify('success', 'Your message here');
 ```
 
 ## Examples
-
-Live example [click here](https://rawgit.com/gleissonmattos/alertui-js/master/example/index.html)
 
 ##### Alertui ALERT
 ![screenshot](docs/alertui-alert.png) 
