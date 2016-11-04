@@ -2,7 +2,7 @@ AlertUi.js
 ===============================
 
 AlertUi.js is a awesome javascript framework to increase experience and interaction of users in applications.
-Check [DEMO here](https://rawgit.com/gleissonmattos/alertui-js/master/example/index.html)
+Check [DEMO here](http://htmlpreview.github.io/?https://rawgit.com/gleissonmattos/alertui-js/master/example/index.html)
 ![screenshot](docs/ui-project.jpg) 
 
 ## Install
