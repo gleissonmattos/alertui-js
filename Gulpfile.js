@@ -4,11 +4,11 @@ var appName = 'alertui';
 
 //Gulp imports
 var gulp           = require('gulp')
-	, pug            = require('gulp-pug')
+  , pug            = require('gulp-pug')
   , htmlBeautify   = require('gulp-html-beautify')
   , cssBeautify    = require('gulp-cssbeautify')
   , cssMin         = require('gulp-minify-css')
-	, sass           = require('gulp-sass')
+  , sass           = require('gulp-sass')
   , rename         = require('gulp-rename')
   , jsBeautify     = require('gulp-jsbeautify')
   , jsMin          = require('gulp-jsmin');
