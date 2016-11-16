@@ -80,6 +80,7 @@
             margin-right: 14px;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -87,16 +88,19 @@
         <div class="demo-present">
             <h1>Alert<span>Ui</span>.Js</h1>
             <p> AlertUiJs is a awesome javascript framework to increase experience and interaction of users in applications.</p>
-        </div><button id="btAlert">Alert</button><button id="btConfirm">Confirm</button><button id="btPrompt">Prompt</button><button id="btNoteDefault">Note Default</button><button id="btNoteSuccess">Note Success</button><button id="btNoteError">Note Error</button>
-        <div class="footer-present">
-            <a href="https://github.com/gleissonmattos"> <img src="http://pseudoramble.com/assets/images/github-icon.png">by <strong>Gleisson Matos</strong> | http://github.com/gleissonmattos</a>
-        </div>
+        </div><button id="btAlert">Alert</button><button id="btConfirm">Confirm</button><button id="btPrompt">Prompt</button><button id="btLoad">Load</button><button id="btNoteDefault">Note Default</button><button id="btNoteSuccess">Note Success</button>
+        <button
+            id="btNoteError">Note Error</button>
+            <div class="footer-present">
+                <a href="https://github.com/gleissonmattos"> <img src="http://pseudoramble.com/assets/images/github-icon.png">by <strong>Gleisson Matos</strong> | http://github.com/gleissonmattos</a>
+            </div>
     </div>
     <script src="../dist/assets/js/alertui.min.js"></script>
     <script>
         var btAlert = document.getElementById("btAlert"),
             btConfirm = document.getElementById("btConfirm"),
             btPrompt = document.getElementById("btPrompt"),
+            btLoad = document.getElementById("btLoad"),
             btNoteDefault = document.getElementById("btNoteDefault"),
             btNoteSuccess = document.getElementById("btNoteSuccess"),
             btNoteError = document.getElementById("btNoteError");
@@ -132,16 +136,52 @@
             alertui.prompt('Prompt Ui',
                 ' Ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?',
                 function(_value) {
+
+                    // _value  is the callback return the input element in prompt
+
                     alertui.alert('',
                         'On the <strong>' + _value.toString() + '</strong> other hand, we denounce with righteous indignation.'
                     );
+
                 },
                 function() {
                     alertui.notify('error',
                         'These cases are perfectly simple and easy to distinguish'
                     );
                 },
-                'Default value'
+                'Default value', {} //Options
+            );
+
+        });
+
+        btLoad.addEventListener("click", function(e) {
+
+            alertui.load('Please wait. Ullam corporis suscipt laboriosam, nisi ut aliquid ex.',
+                function(loadClose, loadEl) {
+
+                    $.ajax({
+                        url: 'https://httpbin.org/get',
+                        type: 'get',
+                        data: {
+
+                            a: 'a384-BI7JTZm+JWJTZm+a384-BI7JTZm+JWJWlsha384-BI7JTZm+JWlslsha384-BI7JTZm+JWlslsha384-BI7JTZm+JWlsha384-BI7JTZm+JWlsha38',
+                            z: 'JTZm+JWha384-BI7JTZm+JWlsha3lha384-BI7JTZm+ha384-BI7JTZm+JWlsha3JWlsha3sha384ha384-BI7JTZm+JWlsha3-BTZm+JWlsha3JWlsha3sha384ha384-BI7JTZm+JWlshTZm+JWlsha3JWlsha3sha384ha384-BI7JTZm+JWlshTZm+JWlsha3JWlsha3sha384ha384-BI7JTZm+JWlshI7JTZm+JWlsha384-BI7JTZm+JWlsha38',
+                            x: 'sha384-BLiI7JTZm+JWlsha384-BI7JTZm+JWlsha384-BI7JTZm+JWlsha384-BI7JTZm+JWlsha384-BI7JTZm+JWlsha384-BLiI7sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoKJTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoKgKa0M0kGRpJbF2J8q+qreVsha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoKrKBC47e3K6BW78kGLrCkeRX6I9RoK'
+
+                        },
+                        cache: false,
+                        success: function(resp) {
+
+                            loadEl.childNodes[1].innerHTML = loadEl.childNodes[1].innerHTML + ' : ' + resp.args.a;
+                            loadClose();
+
+                        },
+                        error: function() {
+                            alert('error');
+                        }
+                    });
+
+                }
             );
 
         });

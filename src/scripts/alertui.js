@@ -190,8 +190,31 @@
                             if(call !== undefined) call(); //Execute callback
                             
                             block = false;
-                        }, callTime);   
+                        }, callTime);
+                        
                     });
+                },
+                
+                loadResponse : function(call, alertEl){
+                    
+                    //Prevent doble click
+                    if(block) return false;
+                    block = true;
+                    
+                    if(call !== undefined){ 
+                        block = false;
+                        
+                        call(function(){
+                            
+                            proto.addClass(alertEl, 'alert-close');    
+                            setTimeout(function(){
+                                proto.removeElement(alertEl);
+                            }, callTime);
+                            
+                        }, alertEl); //Execute callback
+
+                    }
+                        
                 },
                 
                 
@@ -232,17 +255,17 @@
                 */
                 message : function(altOpts){
                     
-                    var altUi= document.createElement('div')
-                      , altBox = document.createElement('div')
-                      , altCm = document.createElement('div')
-                      , btClose = document.createElement('button')
-                      , altHd = document.createElement('div')
-                      , altBdy = document.createElement('div')
-                      , altFt = document.createElement('div')
-                      , btnOk  = document.createElement('button')
-                      , btnCancel = document.createElement('button')
-                      , modal
-                      , dataIn;
+                    var altUi= document.createElement('div'),
+                        altBox = document.createElement('div'),
+                        altCm = document.createElement('div'),
+                        btClose = document.createElement('button'),
+                        altHd = document.createElement('div'),
+                        altBdy = document.createElement('div'),
+                        altFt = document.createElement('div'),
+                        btnOk  = document.createElement('button'),
+                        btnCancel = document.createElement('button'),
+                        modal,
+                        dataIn;
                     
                     //Prevent undefined object
                     if (typeof altOpts.opt !== "object") 
@@ -250,6 +273,7 @@
                     
                      //Create modal element
                     modal = this.createModal();
+                    
                     if(!("modal-close" in altOpts.opt))
                         altOpts.opt["modal-close"] = true;
 
@@ -266,103 +290,165 @@
                     
                     //Set tabindex in dialog element
                     altUi.setAttribute('tabindex', '0');
-                   
-                    if(altOpts.type === 'alert') {
-                    //Alert' type dialog specifications
                     
-                        //Set Title dialog
-                        altHd.innerHTML = altOpts.title !== null ? altOpts.title : 'Alert Ui';
+                    switch (altOpts.type) {
+                        
+                        /*
+                        * Build AlertUi[ALERT] type
+                        */
+                        case 'alert' :
+                            //Alert' type dialog specifications
+                        
+                            //Set Title dialog
+                            altHd.innerHTML = altOpts.title !== null ? altOpts.title : 'Alert Ui';
+                                
+                            //Set Content dialog
+                            altBdy.innerHTML = altOpts.content;
                             
-                        //Set Content dialog
-                        altBdy.innerHTML = altOpts.content;
-                        
-                        //Set Button ok value
-                        if("ok-value" in altOpts.opt)
-                            btnOk.innerHTML = altOpts.opt['ok-value'];
-                            else
-                                btnOk.innerHTML = btOkv;
-                        
-                        this.alertResponse(btnOk, altOpts.onok, altUi);
+                            //Set Button ok value
+                            if("ok-value" in altOpts.opt)
+                                btnOk.innerHTML = altOpts.opt['ok-value'];
+                                else
+                                    btnOk.innerHTML = btOkv;
                             
-                        altFt.appendChild(btnOk);
-                        
-                    } else if(altOpts.type === 'confirm') {
-                        //Confirm' type dialog specifications
-                        
-                        altHd.innerHTML = altOpts.title !== undefined ? altOpts.title : 'Alert Ui';
+                            this.alertResponse(btnOk, altOpts.onok, altUi);
                             
-                        altBdy.innerHTML = altOpts.content; 
-                        
-                        //Set Button ok value
-                        if("ok-value" in altOpts.opt)
-                            btnOk.innerHTML = altOpts.opt['ok-value'];
-                            else 
-                                btnOk.innerHTML = btOkv;   
-                                        
-                        //Set Button cancel value
-                        if("cancel-value" in altOpts.opt)
-                            btnCancel.innerHTML = altOpts.opt['cancel-value'];
-                            else
-                                btnCancel.innerHTML = btCancelV;
-                                        
-                        
-                        this.alertResponse(btnOk, altOpts.onok, altUi);
-                        this.alertResponse(btnCancel, altOpts.oncancel, altUi);
-                        
-                        altFt.appendChild(btnOk);
-                        altFt.appendChild(btnCancel);
-                        
-                    } else if(altOpts.type === 'prompt'){
-                        
-                        dataIn = document.createElement('input');
-                        dataIn.setAttribute('type', 'text');
-                        
-                        proto.addClass(dataIn, 'alt-input');
-                        
-                        altHd.innerHTML = altOpts.title !== undefined ? altOpts.title : 'Prompt Ui';
+                            //REsponse btClose
+                            this.alertResponse(btClose, altOpts.onok, altUi);
+                                
+                            altFt.appendChild(btnOk);
                             
-                        altBdy.innerHTML = altOpts.content; 
-                        altBdy.appendChild(dataIn);
-                        
-                        //Set Button ok value
-                        if("ok-value" in altOpts.opt)
-                            btnOk.innerHTML = altOpts.opt['ok-value'];
-                            else 
-                                btnOk.innerHTML = btOkv;   
-                                        
-                        //Set Button cancel value
-                        if("cancel-value" in altOpts.opt)
-                            btnCancel.innerHTML = altOpts.opt['cancel-value'];
-                            else
-                                btnCancel.innerHTML = btCancelV;  
-                        
-                        
-                        this.promptResponse(btnOk, altOpts.onok, altUi, dataIn);
-                        this.alertResponse(btnCancel, altOpts.oncancel, altUi);
-                        
-                        altFt.appendChild(btnOk);
-                        altFt.appendChild(btnCancel);    
-                        
-                        //Set key event in input element
-                        proto.addEvent(dataIn, 'keydown', function(evt){
-                            evt = evt || window.event;
-                            var key = evt.keyCode || evt.which;
-                            switch (key) {
-                                case 13:
-                                    btnOk.focus();
-                                    proto.dispatchEvent(btnOk, 'click');  
-                                    break;
-                                case 27:
-                                    if(btnCancel)
-                                        btnCancel.focus();
-                                    proto.dispatchEvent(modal, 'click');    
-                                    break;
-                            }  
-                        });
+                            //add bt close
+                            altCm.appendChild(btClose);
+                            
+                            break; 
+                            
+                        /*
+                        * Build AlertUi[CONFIRM] type
+                        */
+                        case 'confirm' :
+                            //Confirm' type dialog specifications
+                            
+                            altHd.innerHTML = altOpts.title !== undefined ? altOpts.title : 'Alert Ui';
+                                
+                            altBdy.innerHTML = altOpts.content; 
+                            
+                            //Set Button ok value
+                            if("ok-value" in altOpts.opt)
+                                btnOk.innerHTML = altOpts.opt['ok-value'];
+                                else 
+                                    btnOk.innerHTML = btOkv;   
+                                            
+                            //Set Button cancel value
+                            if("cancel-value" in altOpts.opt)
+                                btnCancel.innerHTML = altOpts.opt['cancel-value'];
+                                else
+                                    btnCancel.innerHTML = btCancelV;
+                            
+                            this.alertResponse(btnOk, altOpts.onok, altUi);
+                            this.alertResponse(btnCancel, altOpts.oncancel, altUi);
+                            this.alertResponse(btClose, altOpts.oncancel, altUi);
+                            
+                            altFt.appendChild(btnOk);
+                            altFt.appendChild(btnCancel);
+                            
+                            //add bt close
+                            altCm.appendChild(btClose);
+                            
+                            break;
+                            
+                        /*
+                        * Build AlertUi[PROMPT] type
+                        */
+                        case 'prompt' :
+                            
+                            dataIn = document.createElement('input');
+                            dataIn.setAttribute('type', 'text');
+                            
+                            proto.addClass(dataIn, 'alt-input');
+                            
+                            altHd.innerHTML = altOpts.title !== undefined ? altOpts.title : 'Prompt Ui';
+                                
+                            altBdy.innerHTML = altOpts.content; 
+                            altBdy.appendChild(dataIn);
+                            
+                            //Set Button ok value
+                            if("ok-value" in altOpts.opt)
+                                btnOk.innerHTML = altOpts.opt['ok-value'];
+                                else 
+                                    btnOk.innerHTML = btOkv;   
+                                            
+                            //Set Button cancel value
+                            if("cancel-value" in altOpts.opt)
+                                btnCancel.innerHTML = altOpts.opt['cancel-value'];
+                                else
+                                    btnCancel.innerHTML = btCancelV;  
+
+                            this.promptResponse(btnOk, altOpts.onok, altUi, dataIn);
+                            this.alertResponse(btnCancel, altOpts.oncancel, altUi);
+                            this.alertResponse(btClose, altOpts.oncancel, altUi);
+                            
+                            altFt.appendChild(btnOk);
+                            altFt.appendChild(btnCancel);   
+                            
+                            //add bt close
+                            altCm.appendChild(btClose);
+                            
+                            //Set key event in input element
+                            proto.addEvent(dataIn, 'keydown', function(evt){
+                                evt = evt || window.event;
+                                var key = evt.keyCode || evt.which;
+                                switch (key) {
+                                    case 13:
+                                        btnOk.focus();
+                                        proto.dispatchEvent(btnOk, 'click');  
+                                        break;
+                                    case 27:
+                                        if(btnCancel)
+                                            btnCancel.focus();
+                                            
+                                        proto.dispatchEvent(modal, 'click');    
+                                        break;
+                                }  
+                            });
+                            
+                            //Set the value default and select
+                            dataIn.value = altOpts.defvalue;
+                            dataIn.select();
+                            
+                            break;
+                        /*
+                        * Build AlertUi[LOAD] type
+                        */
+                        case 'load' :
+                    
+                            var altLoader = document.createElement('div'),
+                                altContL  = document.createElement('div'),
+                                altContB  = document.createElement('div');
+                                
+                            //Set classe in alertui body elements
+                            altLoader.classList.add('alertui-loader');
+                            altContL.classList.add('alt-content-left');
+                            altContB.classList.add('alt-content-body');
+                            
+                            //Set Content dialog
+                            altContL.appendChild(altLoader);
+                            altContB.innerHTML = altOpts.content;
+                            
+                            //Add the contents
+                            altBdy.appendChild(altContL);
+                            altBdy.appendChild(altContB);
+                            
+                            //Block modal to click close
+                            altOpts.opt["modal-close"] = false;
+                            
+                            //Invoke loadResponse
+                            this.loadResponse(altOpts.onload, altUi);
+                            
+                            break;
+                            
                     }
-                    
-                    //Organizer enter elements
-                    altCm.appendChild(btClose);
+                 
                     altBox.appendChild(altCm);
                     altBox.appendChild(altHd);
                     altBox.appendChild(altBdy);
@@ -371,13 +457,10 @@
                     altUi.appendChild(altBox);
                     
                     //Set Event close modal
-                    if(altOpts.type === 'alert' && altOpts.opt["modal-close"]) { //If alert default ok event
+                    if(altOpts.opt["modal-close"] && altOpts.type === 'alert')
                         this.alertResponse(modal, altOpts.onok, altUi);
-                        this.alertResponse(btClose, altOpts.onok, altUi);
-                    } else if(altOpts.opt["modal-close"]) {
-                        this.alertResponse(modal, altOpts.oncancel, altUi);
-                        this.alertResponse(btClose, altOpts.oncancel, altUi);
-                    }
+                        else if(altOpts.opt["modal-close"])
+                            this.alertResponse(modal, altOpts.oncancel, altUi);
                     
                     // Add Object alert in document body
                     document.body.appendChild(altUi);
@@ -488,16 +571,31 @@
                 },
                 
                 // return alertui PROMPT
-                prompt: function(title, content, onOk, onCancel, option) {
+                prompt: function(title, content, onOk, onCancel, defValue, option) {
                     alertConfig = {
                         type     : 'prompt', 
                         title    : title, 
                         content  : content,
                         onok     : onOk,
                         oncancel : onCancel,
+                        defvalue : defValue,
                         opt      : option
                     }; Generate.message(alertConfig);
                 },
+                
+                //NEWS -----------------------------------------------------------------
+                
+                // return alertui LOAD
+                load: function(content, onLoad) {
+                    alertConfig = {
+                        type: 'load',
+                        content  : content,
+                        onload   : onLoad
+                    }; Generate.message(alertConfig);
+                },
+                
+                //~ END NEWS ----------------------------------------------------------- [ DELETE THE TAG BEFORE RELEASE ]
+                
                 
                 // return alertui NOTIFICATION
                 notify: function(noteType, content) {

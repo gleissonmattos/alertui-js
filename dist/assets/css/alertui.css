@@ -53,10 +53,9 @@
 .alert-ui .altui-dialog {
     position: relative;
     width: 90%;
-    max-width: 400px;
+    max-width: 600px;
     margin: 14% auto;
     border-radius: 3px;
-    outline: 0;
     background-color: #fff;
     -webkit-animation-delay: 0s;
     -webkit-animation-duration: 0.3s;
@@ -85,6 +84,10 @@
     -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1);
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1);
+}
+
+.alert-ui .altui-dialog:focus {
+    outline: 0;
 }
 
 .alert-ui .altui-dialog .altui-cmd {
@@ -133,6 +136,22 @@
 
 .alert-ui .altui-dialog .altui-body .alt-input:focus {
     border-color: #6595ec;
+}
+
+.alert-ui .altui-dialog .alertui-loader {
+    width: 35px;
+    height: 30px;
+    background: url(../img/alertui-load.svg) top 0 left 0 no-repeat;
+    background-size: 90%;
+}
+
+.alert-ui .altui-dialog .alt-content-left, .alert-ui .altui-dialog .alt-content-body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.alert-ui .altui-dialog .alt-content-left {
+    padding-right: 25px;
 }
 
 .alert-ui .altui-dialog .altui-footer {
@@ -342,16 +361,6 @@
     }
 }
 
-@-ms-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
 @-o-keyframes fadeIn {
     0% {
         opacity: 0;
@@ -383,16 +392,6 @@
 }
 
 @-moz-keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-@-ms-keyframes fadeOut {
     0% {
         opacity: 1;
     }
@@ -441,24 +440,6 @@
 }
 
 @-moz-keyframes alertUiNote {
-    0% {
-        -moz-transform: translate(0, 100%);
-        -webkit-transform: translate(0, 100%);
-        -o-transform: translate(0, 100%);
-        -ms-transform: translate(0, 100%);
-        transform: translate(0, 100%);
-    }
-
-    100% {
-        -moz-transform: translate(0, 0);
-        -webkit-transform: translate(0, 0);
-        -o-transform: translate(0, 0);
-        -ms-transform: translate(0, 0);
-        transform: translate(0, 0);
-    }
-}
-
-@-ms-keyframes alertUiNote {
     0% {
         -moz-transform: translate(0, 100%);
         -webkit-transform: translate(0, 100%);
@@ -548,24 +529,6 @@
     }
 }
 
-@-ms-keyframes alertNoteClose {
-    0% {
-        -moz-transform: translate(0, 0);
-        -webkit-transform: translate(0, 0);
-        -o-transform: translate(0, 0);
-        -ms-transform: translate(0, 0);
-        transform: translate(0, 0);
-    }
-
-    100% {
-        -moz-transform: translate(0, 100%);
-        -webkit-transform: translate(0, 100%);
-        -o-transform: translate(0, 100%);
-        -ms-transform: translate(0, 100%);
-        transform: translate(0, 100%);
-    }
-}
-
 @-o-keyframes alertNoteClose {
     0% {
         -moz-transform: translate(0, 0);
@@ -631,34 +594,6 @@
 }
 
 @-moz-keyframes alertUiIn {
-    0% {
-        opacity: 0;
-        -webkit-transform: scale(0.7);
-        -o-transform: scale(0.7);
-        transform: scale(0.7);
-    }
-
-    45% {
-        -webkit-transform: scale(1.05);
-        -o-transform: scale(1.05);
-        transform: scale(1.05);
-    }
-
-    80% {
-        -webkit-transform: scale(0.95);
-        -o-transform: scale(0.95);
-        transform: scale(0.95);
-    }
-
-    100% {
-        opacity: 1;
-        -webkit-transform: scale(1);
-        -o-transform: scale(1);
-        transform: scale(1);
-    }
-}
-
-@-ms-keyframes alertUiIn {
     0% {
         opacity: 0;
         -webkit-transform: scale(0.7);
@@ -771,34 +706,6 @@
 }
 
 @-moz-keyframes alertUiOut {
-    0% {
-        -webkit-transform: scale(1);
-        -o-transform: scale(1);
-        transform: scale(1);
-    }
-
-    45% {
-        opacity: 1;
-        -webkit-transform: scale(1.05);
-        -o-transform: scale(1.05);
-        transform: scale(1.05);
-    }
-
-    80% {
-        -webkit-transform: scale(0.7);
-        -o-transform: scale(0.7);
-        transform: scale(0.7);
-    }
-
-    100% {
-        opacity: 0;
-        -webkit-transform: scale(0.3);
-        -o-transform: scale(0.3);
-        transform: scale(0.3);
-    }
-}
-
-@-ms-keyframes alertUiOut {
     0% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);

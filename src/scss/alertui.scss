@@ -33,14 +33,16 @@
     .altui-dialog {
         position: relative;
         width: 90%;
-        max-width: 400px;
+        max-width: 600px;
         margin: 14% auto;
         border-radius: 3px;
-        outline: 0;
         background-color: #fff;
         @include animation (0s, $time-animation, alertUiIn, 1);
         @include box-shadow (0, 19px, 38px, rgba(0, 0, 0, 0.1), false);
         
+        &:focus {
+            outline: 0;
+        }
         .altui-cmd {
             position: absolute;
             right: 10px;
@@ -90,6 +92,22 @@
             }
         }
         
+        .alertui-loader {
+            width: 35px;
+            height: 30px;
+            background: url(../img/alertui-load.svg) top 0 left 0 no-repeat;
+            background-size: 90%;
+        }
+        
+        .alt-content-left, .alt-content-body {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        
+        .alt-content-left {
+            padding-right: 25px;
+        }
+        
         .altui-footer {
             padding: 10px 25px 15px 25px;
             text-align: right;
@@ -108,7 +126,6 @@
                 &:hover, &:focus {
                     background: #ececec;
                 }
-                
                 
                 &:active {
                     background: #e8e8e8;
