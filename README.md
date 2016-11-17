@@ -30,7 +30,7 @@ The integration is done only with insertion the files ```alertui.min.css``` and 
   <script src="js/alertui.min.js"> 
 ```
 
-Note: Verify img file ```dist/assets/img``` in your css file.
+> Note: Verify img file ```dist/assets/img``` in your css file.
 
 ## Getting started
 
@@ -45,6 +45,7 @@ The Alertui.js is of easy usage. You only need execute the code in your function
 - alertui.load(String, callLoad([loadClose()], [loadElement])); ```*NEW```
 - alertui.notify(String, callback(), [options]);
 
+> Alertui also supports key commands (```Enter``` to 'ok' and ```ESC``` to 'cancel')
 
 ### Basic usage  
 - alertui.alert()
@@ -149,11 +150,13 @@ alertui.load('Please wait. Your message while loading...',
 alertui.load('Please wait. Sending message...',
     function(loadClose, loadEl){
         
+        msg = 'ajax message example';
+        
         $.ajax({
             url: 'https://your-url.com/request',
             type: 'post',
             data: {
-                message : 'ajax message example' 
+                message : msg 
             },
             cache: false,
             success: function(resp){
