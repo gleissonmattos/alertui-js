@@ -52,9 +52,9 @@
 
 .alert-ui .altui-dialog {
     position: relative;
-    width: 90%;
-    max-width: 600px;
-    margin: 14% auto;
+    width: 92%;
+    max-width: 36em;
+    margin: 12em auto 12em auto;
     border-radius: 3px;
     background-color: #fff;
     -webkit-animation-delay: 0s;
@@ -109,14 +109,15 @@
 }
 
 .alert-ui .altui-dialog .altui-header {
-    padding: 20px 30px 10px 30px;
+    padding: 15px 30px 10px;
     font-weight: 600;
+    font-size: 1.1rem;
     color: #56595f;
 }
 
 .alert-ui .altui-dialog .altui-body {
-    padding: 0 30px 8px 30px;
-    font-size: 13px;
+    padding: 8px 30px 8px;
+    font-size: .816rem;
     color: #727782;
 }
 
@@ -162,13 +163,15 @@
 .alert-ui .altui-dialog .altui-footer .alt-btn {
     background: transparent;
     border: none;
-    padding: 8px 23px;
+    padding: .5rem 1rem;
     border-radius: 3px;
     margin-left: 8px;
     cursor: pointer;
     text-transform: uppercase;
-    font-weight: 700;
-    outline: none;
+    font-weight: 100;
+    font-size: .98rem;
+    line-height: 1.25;
+    outline: 0;
 }
 
 .alert-ui .altui-dialog .altui-footer .alt-btn:hover, .alert-ui .altui-dialog .altui-footer .alt-btn:focus {

@@ -206,7 +206,8 @@
                         
                         call(function(){
                             
-                            proto.addClass(alertEl, 'alert-close');    
+                            proto.addClass(alertEl, 'alert-close');   
+                            
                             setTimeout(function(){
                                 proto.removeElement(alertEl);
                             }, callTime);

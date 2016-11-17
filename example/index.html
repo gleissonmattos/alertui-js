@@ -156,7 +156,7 @@
 
         btLoad.addEventListener("click", function(e) {
 
-            alertui.load('Please wait. Ullam corporis suscipt laboriosam, nisi ut aliquid ex.',
+            alertui.load('Sending message... Please wait.',
                 function(loadClose, loadEl) {
 
                     $.ajax({
@@ -164,6 +164,7 @@
                         type: 'get',
                         data: {
 
+                            m: 'This is one example post text',
                             a: 'a384-BI7JTZm+JWJTZm+a384-BI7JTZm+JWJWlsha384-BI7JTZm+JWlslsha384-BI7JTZm+JWlslsha384-BI7JTZm+JWlsha384-BI7JTZm+JWlsha38',
                             z: 'JTZm+JWha384-BI7JTZm+JWlsha3lha384-BI7JTZm+ha384-BI7JTZm+JWlsha3JWlsha3sha384ha384-BI7JTZm+JWlsha3-BTZm+JWlsha3JWlsha3sha384ha384-BI7JTZm+JWlshTZm+JWlsha3JWlsha3sha384ha384-BI7JTZm+JWlshTZm+JWlsha3JWlsha3sha384ha384-BI7JTZm+JWlshI7JTZm+JWlsha384-BI7JTZm+JWlsha38',
                             x: 'sha384-BLiI7JTZm+JWlsha384-BI7JTZm+JWlsha384-BI7JTZm+JWlsha384-BI7JTZm+JWlsha384-BI7JTZm+JWlsha384-BLiI7sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoKJTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoKgKa0M0kGRpJbF2J8q+qreVsha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoKrKBC47e3K6BW78kGLrCkeRX6I9RoK'
@@ -172,8 +173,16 @@
                         cache: false,
                         success: function(resp) {
 
-                            loadEl.childNodes[1].innerHTML = loadEl.childNodes[1].innerHTML + ' : ' + resp.args.a;
-                            loadClose();
+                            setTimeout(function() {
+
+                                loadClose();
+
+                                //AlertUi notify in example
+                                alertui.notify('success',
+                                    'The message "<i>' + resp.args.m + '</i>" was sending with success!'
+                                );
+
+                            }, 3650);
 
                         },
                         error: function() {

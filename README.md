@@ -1,7 +1,9 @@
 AlertUi.js
 ===============================
 
-AlertUi.js is a awesome javascript framework to increase experience and interaction of users in applications.
+Awesome javascript framework to increase experience and interaction of users in applications. 
+Change the browser alert dialogs for one clean, beautiful and modern dialog. 
+The Alertui.js is of easy usage. You only need execute the code in your function event
 Check [DEMO here](http://htmlpreview.github.io/?https://rawgit.com/gleissonmattos/alertui-js/master/example/index.html)
 ![screenshot](docs/ui-project.jpg) 
 
@@ -62,7 +64,7 @@ alertui.notify('success', 'Your message here');
 ###### Usage: 
 ```javascript
 alertui.alert('Alert Ui', 
-    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 
+    'Excepteur sint occaecat cupidatat non proident.', 
     function(){
         /* Your callback function here */
     }
@@ -75,7 +77,7 @@ alertui.alert('Alert Ui',
 ###### Usage: 
 ```javascript
 alertui.confirm('Confirm Ui'
-    , ' Vel et elitr sadipscing consectetuer, usu cu maiestatis referrentur. Duo at tamquam nostrud, vel nonumy veritus eu.'
+    , ' Vel et elitr sadipscing consectetuer, usu cu maiestatis referrentur..'
     , function(){
         // Notify success callback button default Ok
         alertui.notify('success', 'Every pleasure is to be welcomed and every pain avoided.');
@@ -139,8 +141,8 @@ The alertui component contains extra options to personalize the dialogs. Insert 
 ```javascript
 alertui.confirm('Title dialog', 
     'Your content message', 
-    function(){ // Callback bt ok }, 
-    function(){ // Callback bt cancel },
+    function(){ /* Callback bt ok */ }, 
+    function(){ /*Callback bt cancel */ },
     {   
         "modal-close"  : false,
         "ok-value"     : "I know",
