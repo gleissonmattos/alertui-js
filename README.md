@@ -39,10 +39,11 @@ The Alertui.js is of easy usage. You only need execute the code in your function
 ![screenshot](docs/alertui.gif) 
 
 ### API
-- ``` alertui.alert(String, String, call(), [options]);```
-- ``` alertui.confirm(String, String, callOk(), CallCancel, [options]);```
-- ``` alertui.prompt(String, String, callOk(), Callback, [options]);```
-- ``` alertui.notify(String, callback(), [options]);```
+- alertui.alert(String, String, call(), [options]);
+- alertui.confirm(String, String, callOk(), CallCancel, [options]);
+- alertui.prompt(String, String, callOk([value]), CallCancel(), [options]);
+- alertui.load(String, callLoad([loadClose()], [loadElement])); ```*NEW```
+- alertui.notify(String, callback(), [options]);
 
 
 ### Basic usage  
@@ -108,6 +109,70 @@ alertui.prompt('Prompt Ui',
 );
 ```
 
+##### Alertui LOAD ```*NEW```
+![screenshot](docs/alertui-load.png) 
+```javascript
+/* This is the basic structure */
+alertui.load('Please wait. Your message while loading...',
+    function(loadClose, loadEl){
+        //your implements here..    
+    }
+);
+```
+###### Usage:
+
+
+1. Example one
+
+```javascript
+alertui.load('Please wait. Your message while loading...',
+    function(loadClose, loadEl){
+        var area = document.body,
+        elX;
+        
+        elX = document.createElement('h1');
+        elX.innerHTML = 'Wellcome page';
+        
+        area.appendChild(elX);
+        
+        /*  This is need for close the alertui.load()
+        *   Insert loadClose() at the end of the implementations */
+        loadClose(); 
+     
+    }
+);
+```
+2. Advanced example with Jquery
+
+```javascript
+
+alertui.load('Please wait. Sending message...',
+    function(loadClose, loadEl){
+        
+        $.ajax({
+            url: 'https://your-url.com/request',
+            type: 'post',
+            data: {
+                message : 'ajax message example' 
+            },
+            cache: false,
+            success: function(resp){
+                //Your implementations here if ok
+                
+                loadClose(); //Close the loading dialog     
+            },
+            error: function(){
+                //Your implementations here if error
+                
+                loadClose(); //Close the loading dialog
+            }
+        });    
+          
+    }
+);
+```
+
+
 ##### Alertui NOTIFY
 ![screenshot](docs/alertui-notify.png) 
 
@@ -136,14 +201,14 @@ The alertui component contains extra options to personalize the dialogs. Insert 
 - ```ok-value``` - is the value to the button primary 'OK'.
 - ```cancel-value``` - is the value to the button default 'CANCEL'.
 
-###### Example: 
+###### Example:
 
 ```javascript
-alertui.confirm('Title dialog', 
+alertui.confirm('Title dialog',
     'Your content message', 
     function(){ /* Callback bt ok */ }, 
     function(){ /*Callback bt cancel */ },
-    {   
+    {
         "modal-close"  : false,
         "ok-value"     : "I know",
         "cancel-value" : "Back" 
@@ -154,6 +219,10 @@ alertui.confirm('Title dialog',
 ## Contributions
 To Contribute is indispensable keep the Standard. Implement From the Files the src folder via Gulp automator and technologies Pug and SCSS files. Use npm to install the modules. ```npm install``` inside the project. 
 
+## News [version 1.2.6]
+- New AlertUi Load()
+- Improved design
+- Fix bugs
 
 License
 =======

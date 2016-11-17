@@ -149,7 +149,7 @@
                         'These cases are perfectly simple and easy to distinguish'
                     );
                 },
-                'example default value', {} //Options
+                'example default value', { /* Options here */ }
             );
 
         });
@@ -174,6 +174,7 @@
                         cache: false,
                         success: function(resp) {
 
+                            //This Time out function is only to delay in show the exemplo of alertui.load()
                             setTimeout(function() {
 
                                 loadClose();
@@ -187,7 +188,13 @@
 
                         },
                         error: function() {
-                            alert('error');
+
+                            loadClose();
+
+                            alertui.notify('error',
+                                'Not can sending message!'
+                            );
+
                         }
                     });
 

@@ -414,8 +414,12 @@
                             });
                             
                             //Set the value default and select
-                            dataIn.value = altOpts.defvalue;
-                            dataIn.select();
+                            if(altOpts.defvalue != undefined) {
+                                dataIn.value = altOpts.defvalue;
+                                dataIn.select();
+                            } else {
+                                dataIn.value = '';   
+                            }
                             
                             break;
                         /*

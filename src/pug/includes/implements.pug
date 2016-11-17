@@ -56,7 +56,7 @@ script.
                 );
             },
             'example default value',
-            {} //Options
+            { /* Options here */ }
         );
         
     });
@@ -81,7 +81,8 @@ script.
                     cache: false,
                     success: function(resp){
                         
-                        setTimeout(function(){ 
+                        //This Time out function is only to delay in show the exemplo of alertui.load()
+                        setTimeout(function(){
                         
                             loadClose();
                             
@@ -94,7 +95,13 @@ script.
                         
                     },
                     error:  function(){
-                        alert('error');
+                    
+                        loadClose();
+                        
+                        alertui.notify('error',
+                            'Not can sending message!'
+                        );
+                        
                     }
                 });
                 
