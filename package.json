@@ -1,6 +1,6 @@
 {
   "name": "alert-ui-js",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "description": "Clean alert and notification dialogs",
   "main": "Gulpfile.js",
   "directories": {
@@ -36,13 +36,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "Notify",
+    "notify",
     "alert",
     "notification",
-    "dialogs",
+    "dialog",
     "alert",
     "prompt",
-    "confirm"
+    "confirm",
+    "load",
+    "loading"
   ],
   "author": "Gleisson Ricardo",
   "license": "MIT"
