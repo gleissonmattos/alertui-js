@@ -201,6 +201,11 @@
                     });
                 },
 
+                /**
+                 * Response load dialog
+                 * @param call {function} - The callback action after the dialog 
+                 * @param alertEl {object} - The principal element the dialog
+                 */
                 loadResponse: function(call, alertEl) {
 
                     //Prevent doble click
@@ -596,8 +601,6 @@
                 Generate.message(alertConfig);
             },
 
-            //NEWS -----------------------------------------------------------------
-
             // return alertui LOAD
             load: function(content, onLoad) {
                 alertConfig = {
@@ -607,9 +610,6 @@
                 };
                 Generate.message(alertConfig);
             },
-
-            //~ END NEWS ----------------------------------------------------------- [ DELETE THE TAG BEFORE RELEASE ]
-
 
             // return alertui NOTIFICATION
             notify: function(noteType, content) {
