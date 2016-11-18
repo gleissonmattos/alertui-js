@@ -14,7 +14,7 @@ Check [DEMO here](http://htmlpreview.github.io/?https://rawgit.com/gleissonmatto
   npm install gleissonmattos/alertui-js
 ```
 
-* Or you can just clone from GitHub. [Download (v1.0.1)](https://github.com/gleissonmattos/alertui-js.git).
+* Or you can just clone from GitHub. [Download (v1.2.6)](https://github.com/gleissonmattos/alertui-js/archive/v1.2.6.zip).
 
 
 ## Integration
