@@ -116,7 +116,10 @@ alertui.prompt('Prompt Ui',
 /* This is the basic structure */
 alertui.load('Please wait. Your message while loading...',
     function(loadClose, loadEl){
-        //your implements here..    
+        //your implements here..  
+        
+        //close the alertui.load() after your implementations
+        loadClose();
     }
 );
 ```
