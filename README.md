@@ -4,7 +4,7 @@ AlertUi.js
 Awesome javascript framework to increase experience and interaction of users in applications. 
 Change the browser alert dialogs for one clean, beautiful and modern dialog. 
 The Alertui.js is of easy usage. You only need execute the code in your function event
-Check [DEMO here](http://htmlpreview.github.io/?https://rawgit.com/gleissonmattos/alertui-js/master/example/index.html)
+Check [DEMO here](https://rawgit.com/gleissonmattos/alertui-js/master/example/index.html)
 ![screenshot](docs/ui-project.jpg) 
 
 ## Install
