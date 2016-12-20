@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Alert Ui</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE-edge">
+    <link rel="stylesheet" type="text/css" href="../dist/assets/css/alertui.min.css">
+    <style>
+        html,
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            background: #f0f1f3;
+            background: #3a3c42;
+            color: #dcdcdc;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        h1 small {
+            color: #636469;
+        }
+        
+        .demo-here {
+            position: relative;
+            width: 100%;
+            padding: 11px;
+            margin: 7% auto;
+            max-width: 577px;
+        }
+        
+        .demo-here button {
+            border: none;
+            color: #414a50;
+            padding: 7px 16px;
+            border-radius: 3px;
+            margin: 21px 2px;
+            cursor: pointer;
+            outline: none;
+            font-weight: 600;
+        }
+        
+        .demo-here button:hover {
+            background: #d0d0d0;
+            color: #7b7b7b;
+        }
+        
+        .demo-here button:focus {
+            background: silver;
+        }
+        
+        .footer-present {
+            margin-top: 50px;
+            padding: 18px 14px;
+            border: 1px solid #4f5052;
+        }
+        
+        .footer-present>* {
+            margin: 0;
+            font-weight: 400;
+            font-size: 13px;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .footer-present a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-present img {
+            width: 21px;
+            vertical-align: middle;
+            margin-right: 14px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="demo-here">
+        <div class="demo-present">
+            <h1>Alert<span>Ui</span>.Js Modal</h1>
+            <p> AlertUiJs is a awesome javascript framework to increase experience and interaction of users in applications.</p>
+        </div><button class="alert-to" data-modal="modalOne">Modal one</button><button class="alert-to" data-modal="modalTwo">Modal two</button>
+        <div class="alert-ui" id="modalOne">
+            <div class="altui-modal">
+                <div class="altui-dialog">
+                    <div class="altui-cmd"><button class="altui-close">×</button></div>
+                    <div class="altui-header">Title dialog</div>
+                    <div class="altui-body">This is message dialog <a onClick="alertui.modalClose('modalOne')" style="color: #18a3fa" cursor="pointer">Click here to close</a></div>
+                    <div class="altui-footer"><button class="alt-btn alt-default altui-close">Close</button><button class="alt-btn alt-primary">Yes, send</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="alert-ui" id="modalTwo">
+            <div class="altui-modal">
+                <div class="altui-dialog">
+                    <div class="altui-header">Title dialog 2</div>
+                    <div class="altui-body">This is message dialog</div>
+                    <div class="altui-footer"><button class="alt-btn alt-default altui-close">Close</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-present">
+            <a href="https://github.com/gleissonmattos"> <img src="http://pseudoramble.com/assets/images/github-icon.png">by <strong>Gleisson Matos</strong> | http://github.com/gleissonmattos</a>
+        </div>
+    </div>
+    <script src="../dist/assets/js/alertui.min.js"></script>
+</body>
+
+</html>

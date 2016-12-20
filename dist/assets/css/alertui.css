@@ -7,13 +7,17 @@
  */
 .alert-ui {
     position: fixed;
-    display: block;
+    display: none;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", Helvetica, sans-serif;
     z-index: 99999999;
+}
+
+.alert-ui.show {
+    display: block;
 }
 
 .alert-ui .altui-modal {
@@ -93,20 +97,26 @@
 
 .alert-ui .altui-dialog .altui-cmd {
     position: absolute;
-    right: 10px;
-}
-
-.alert-ui .altui-dialog .altui-cmd button {
-    width: 10px;
-    height: 10px;
-    margin-left: 5px;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+    right: 0;
 }
 
 .alert-ui .altui-dialog .altui-cmd .altui-close {
-    background: url("../img/alertui-close.png") no-repeat center center transparent;
+    margin: 0 0 0 5px;
+    padding: .1rem .48rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 100;
+    font-size: 1.4rem;
+    background: 0 0;
+    opacity: .7;
+}
+
+.alert-ui .altui-dialog .altui-cmd .altui-close:hover {
+    opacity: 1;
+}
+
+.alert-ui .altui-dialog .altui-cmd .altui-close:focus {
+    outline: none;
 }
 
 .alert-ui .altui-dialog .altui-header {
@@ -159,36 +169,6 @@
 .alert-ui .altui-dialog .altui-footer {
     padding: 12px 25px 12px 25px;
     text-align: right;
-}
-
-.alert-ui .altui-dialog .altui-footer .alt-btn {
-    background: transparent;
-    border: none;
-    padding: .5rem 1rem;
-    border-radius: 3px;
-    margin-left: 8px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: .96rem;
-    line-height: 1.25;
-    outline: 0;
-}
-
-.alert-ui .altui-dialog .altui-footer .alt-btn:hover, .alert-ui .altui-dialog .altui-footer .alt-btn:focus {
-    background: #ececec;
-}
-
-.alert-ui .altui-dialog .altui-footer .alt-btn:active {
-    background: #e8e8e8;
-}
-
-.alert-ui .altui-dialog .altui-footer .alt-btn.alt-primary {
-    color: #6595ec;
-}
-
-.alert-ui .altui-dialog .altui-footer .alt-btn.alt-default {
-    color: #6595ec;
 }
 
 .alert-ui.alert-close .altui-modal {
@@ -245,6 +225,36 @@
     /* this prevents the animation from restarting! */
 }
 
+.alert-ui .alt-btn {
+    background: transparent;
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: 3px;
+    margin: 0 0 0 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: .96rem;
+    line-height: 1.25;
+    outline: 0;
+}
+
+.alert-ui .alt-btn:hover, .alert-ui .alt-btn:focus {
+    background: #ececec;
+}
+
+.alert-ui .alt-btn:active {
+    background: #e8e8e8;
+}
+
+.alert-ui .alt-btn.alt-primary {
+    color: #6595ec;
+}
+
+.alert-ui .alt-btn.alt-default {
+    color: #6595ec;
+}
+
 .alert-ui-note {
     position: fixed;
     bottom: 0;
@@ -259,7 +269,7 @@
     margin: 0 auto 0 auto;
     padding: 15px 20px;
     background: #5f70a0;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", Helvetica, sans-serif;
     color: #fff;
     text-align: center;
     cursor: pointer;

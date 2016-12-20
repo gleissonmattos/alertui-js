@@ -134,10 +134,15 @@
                     return elModal;
                 },
                 
+                /**
+                * Block body element
+                * @param flg {boolean} -- Block body or no (true/false)
+                */
                 blockBody : function(flg){
                     var elBdy;
                     elBdy = document.body;
                     
+                    /* Set style */
                     flg 
                     ?  elBdy.style.overflow = 'hidden' 
                     : elBdy.style.overflow = ''; 
@@ -299,6 +304,8 @@
                     /* Block body */
                     this.blockBody(true);
                     
+                    btClose.innerHTML = '×';
+                    
                     //Prevent undefined object
                     if (typeof altOpts.opt !== "object") 
                         altOpts.opt = {}; 
@@ -311,6 +318,7 @@
 
                     //Set elements class   
                     proto.addClass( altUi, 'alert-ui');
+                    proto.addClass( altUi, 'show');
                     proto.addClass( altBox, 'altui-dialog' );
                     proto.addClass( altCm, 'altui-cmd' );
                     proto.addClass( altHd, 'altui-header' );
@@ -573,7 +581,86 @@
                             document.body.appendChild(altUi);
                     }
                     this.noteResponse(notify, note.onClose, altUi);
+                },
+                
+                /**
+                * Modal implementations
+                */
+                modal : function(){
+                    
+                    function scan(eClass){
+                        return document.getElementsByClassName(eClass);        
+                    }
+                    
+                    /**
+                    * Show modal
+                    * @param same {object} -- This object
+                    */
+                    function show(same){
+                        var mId,
+                            mdEl;
+                            
+                        mId = same.dataset.modal;
+                        mdEl = document.getElementById(mId);
+                        
+                        proto.addClass(mdEl, 'show');
+                        
+                    }
+                    
+                    /**
+                    * Close modal
+                    * @param mdl {object} -- Object modal
+                    */
+                    function close(mdl){
+                        mdl.classList.add('alert-close');
+                        setTimeout(function(){
+                           mdl.classList.remove('show', 'alert-close'); 
+                        }, callTime);
+                    }
+                    
+                    /**
+                    * Set intern modal actions default
+                    * @param mdl {object} -- Object modal
+                    */
+                    function setActions(mdl){
+                        var cBt,
+                            i;
+                        cBt = mdl.getElementsByClassName('altui-close');
+                        for( i = 0; i < cBt.length; i++) {
+                            /* Set close modal event */
+                            proto.addEvent(cBt[i], 'click', function(){
+                                close(mdl);     
+                            });
+                        }
+                    }
+                    
+                    /* Initialize modal */
+                    function _init(){
+                        var mdLs,
+                            mdBt,
+                            i;
+                            
+                        mdLs = scan('alert-ui');
+                        mdBt = scan('alert-to');
+                        
+                        for(i = 0; i < mdLs.length; i++){
+                            setActions(mdLs[i]);    
+                        }
+                        
+                        for( i = 0; i < mdBt.length; i++){
+                            proto.addEvent(mdBt[i], 'click', function(){
+                                var same;
+                                same = this;
+                                show(same);
+                            });
+                        }
+                        
+                    }
+                    
+                    _init();
                 }
+                
+                
             };
         
         
@@ -582,6 +669,21 @@
             * @return {action} - Alert Ui functions
             */
             return {
+                
+                // modal
+                modal: (function(){
+                    _$generate_.modal();
+                })(),
+                
+                modalClose: function(mdlId){
+                    var mdl;
+                    mdl = document.getElementById(mdlId);
+                    
+                    mdl.classList.add('alert-close');
+                    setTimeout(function(){
+                       mdl.classList.remove('show', 'alert-close'); 
+                    }, callTime);  
+                },
             
                 // return alertui ALERT;
                 alert: function(title, content, onOk, option) {
@@ -636,10 +738,11 @@
                     }; _$generate_.note(noteConfig);
                 },
         };
+        
     }
     
     //Set window namespace
     alertuiWin = new Alertui();
     window[namespace] = alertuiWin;
-
+    
 })( window, 'alertui' );

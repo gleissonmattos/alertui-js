@@ -8,16 +8,20 @@
  * https://github.com/gleissonmattos
  * MIT License (c) 2016 Gleisson Matos
  */
- 
+
 .alert-ui { 
     position: fixed;
-    display: block;
+    display: none;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     font-family: $font-opensans;
     z-index: 99999999;
+    
+    &.show {
+        display: block;    
+    }
     
     .altui-modal {
         position: fixed;
@@ -46,19 +50,23 @@
         }
         .altui-cmd {
             position: absolute;
-            right: 10px;
-            
-            button {
-                width: 10px;
-                height: 10px;
-                margin-left: 5px;
-                padding: 10px;
-                border: none;
-                cursor: pointer;
-            }
+            right: 0;
             
             .altui-close {
-                background: url($url-close-icon) no-repeat center center transparent;    
+                margin: 0 0 0 5px;
+                padding: .1rem .48rem;
+                border: none;
+                cursor: pointer;
+                font-weight: 100;
+                font-size: 1.4rem;
+                background: 0 0;
+                opacity: .7;   
+                &:hover {
+                    opacity: 1;
+                }
+                &:focus {
+                    outline: none;
+                }
             }
             
         }
@@ -113,36 +121,6 @@
         .altui-footer {
             padding: 12px 25px 12px 25px;
             text-align: right;
-            
-            .alt-btn {
-                background: transparent;
-                border: none;
-                padding: .5rem 1rem;
-                border-radius: 3px;
-                margin-left: 8px;
-                cursor: pointer;
-                text-transform: uppercase;
-                font-weight: 700;
-                font-size: .96rem;
-                line-height: 1.25;
-                outline: 0;
-                
-                &:hover, &:focus {
-                    background: #ececec;
-                }
-                
-                &:active {
-                    background: #e8e8e8;
-                }
-                
-                &.alt-primary {
-                    color: $p_color;
-                }
-                
-                &.alt-default {
-                    color: $p_color;
-                }
-            }
         }
     }
      &.alert-close {
@@ -153,6 +131,36 @@
         
         .altui-dialog {
             @include animation (0s, $time-animation, alertUiOut, 1);    
+        }
+    }
+    
+    .alt-btn {
+        background: transparent;
+        border: none;
+        padding: .5rem 1rem;
+        border-radius: 3px;
+        margin: 0 0 0 8px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: .96rem;
+        line-height: 1.25;
+        outline: 0;
+        
+        &:hover, &:focus {
+            background: #ececec;
+        }
+        
+        &:active {
+            background: #e8e8e8;
+        }
+        
+        &.alt-primary {
+            color: $p_color;
+        }
+        
+        &.alt-default {
+            color: $p_color;
         }
     }
 }

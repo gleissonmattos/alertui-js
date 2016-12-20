@@ -1,0 +1,43 @@
+include includes/head.pug
+
+    block content
+    
+    .demo-here
+        .demo-present
+            h1 Alert<span>Ui</span>.Js Modal
+            p   AlertUiJs is a awesome javascript framework to 
+                |  increase experience and interaction of users in applications.
+                
+        button.alert-to(data-modal='modalOne') Modal one
+        button.alert-to(data-modal='modalTwo') Modal two
+        
+        .alert-ui#modalOne
+            .altui-modal
+                .altui-dialog
+                    .altui-cmd
+                        button.altui-close ×
+                    .altui-header
+                        | Title dialog
+                    .altui-body
+                        | This is message dialog 
+                        a(onClick="alertui.modalClose('modalOne')" style="color: #18a3fa" cursor='pointer') Click here to close
+                    .altui-footer
+                        button.alt-btn.alt-default.altui-close Close
+                        button.alt-btn.alt-primary Yes, send
+                        
+        .alert-ui#modalTwo
+            .altui-modal
+                .altui-dialog
+                    .altui-header
+                        | Title dialog 2
+                    .altui-body
+                        | This is message dialog
+                    .altui-footer
+                        button.alt-btn.alt-default.altui-close Close
+            
+        .footer-present
+            a(href="https://github.com/gleissonmattos") 
+                img(src="http://pseudoramble.com/assets/images/github-icon.png")
+                | by <strong>Gleisson Matos</strong> | http://github.com/gleissonmattos
+    
+    include includes/script-footer.pug
