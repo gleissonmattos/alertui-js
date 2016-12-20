@@ -107,14 +107,18 @@
     */
     function Alertui() {
         //vars and default values
-        var alertConfig                 // Object config the alertui functions
+        var same
+          , alertConfig                // Object config the alertui functions
           , noteConfig                 // Object config the alertui notifications
           , btOkv = 'Ok'              // Default button primary
           , btCancelV = 'Cancel'     // Default button secundary
           , callTime = 500          // Delay to callback execution
-          , noteTime = 6000        // Time default the exhibition the note
+          , noteTime = 4300        // Time default the exhibition the note
           , block = false         // Var 'block' to prevent doble clicks in actions
-          , Generate = {
+          , _$generate_;
+          
+          /* Generator */
+          _$generate_ = {
                 
                 /**
                 * Create complete modal element
@@ -130,6 +134,14 @@
                     return elModal;
                 },
                 
+                blockBody : function(flg){
+                    var elBdy;
+                    elBdy = document.body;
+                    
+                    flg 
+                    ?  elBdy.style.overflow = 'hidden' 
+                    : elBdy.style.overflow = ''; 
+                },
                 
                 /**
                 * Response note dialog
@@ -142,56 +154,66 @@
                     
                     var reqValue;
                     
-                    proto.addEvent(el, 'click', function(){
+                    proto.addEvent(el, 'click', function(event){
+                        _$generate_.blockBody(false);
                         
-                        //Get input value
-                        reqValue = elDataIn.value;
-                        
-                        //Prevent doble click
-                        if(block) return false;
-                        
-                        if(reqValue !== ''){
-                            
-                            block = true;
-                        
-                            //Prevent doble clicks
-                            el.setAttribute('disabled', 'disabled');
-                            proto.addClass(alertEl, 'alert-close');
-                            setTimeout(function(){
-                                proto.removeElement(alertEl);
-                                if(call !== undefined)
-                                    call(reqValue); //Execute callback
+                        /* Prevent dialog click*/
+                        if (event.target.matches('.altui-modal, .alt-btn, .altui-close')) {  
                                 
-                                block = false;
-                            }, callTime);  
-                        } else
-                            elDataIn.focus();
+                            //Get input value
+                            reqValue = elDataIn.value;
+                            
+                            //Prevent doble click
+                            if(block) return false;
+                            
+                            if(reqValue !== ''){
+                                
+                                block = true;
+                            
+                                //Prevent doble clicks
+                                el.setAttribute('disabled', 'disabled');
+                                proto.addClass(alertEl, 'alert-close');
+                                setTimeout(function(){
+                                    proto.removeElement(alertEl);
+                                    if(call !== undefined)
+                                        call(reqValue); //Execute callback
+                                    
+                                    block = false;
+                                }, callTime);  
+                            } else
+                                elDataIn.focus();
+                        }
                     });
                 },
                 
                 
                 /**
-                * Response alert dialog
+                * Response global alert dialog
                 * @param el {object} - Action element
                 * @param call {function} - The callback action after the dialog 
                 * @param alertEl {object} - The principal element the dialog
                 */
                 alertResponse : function(el, call, alertEl){
                         
-                    proto.addEvent(el, 'click', function(){
+                    proto.addEvent(el, 'click', function(event){
+                        _$generate_.blockBody(false);
                         
-                        //Prevent doble click
-                        if(block) return false;
-                        block = true;
-                        
-                        proto.addClass(alertEl, 'alert-close');
-                        setTimeout(function(){
-                            proto.removeElement(alertEl);
-                            if(call !== undefined) call(); //Execute callback
+                         /* Prevent dialog click*/
+                        if (event.target.matches('.altui-modal, .alt-btn, .altui-close')) {  
                             
-                            block = false;
-                        }, callTime);
-                        
+                            //Prevent doble click
+                            if(block) return false;
+                            block = true;
+                            
+                            proto.addClass(alertEl, 'alert-close');
+                            setTimeout(function(){
+                                proto.removeElement(alertEl);
+                                if(call !== undefined) call(); //Execute callback
+                                
+                                block = false;
+                            }, callTime);
+                            
+                        }
                     });
                 },
                 
@@ -207,10 +229,11 @@
                     block = true;
                     
                     if(call !== undefined){ 
+                        
                         block = false;
                         
                         call(function(){
-                            
+                            _$generate_.blockBody(false);
                             proto.addClass(alertEl, 'alert-close');   
                             
                             setTimeout(function(){
@@ -272,6 +295,9 @@
                         btnCancel = document.createElement('button'),
                         modal,
                         dataIn;
+                    
+                    /* Block body */
+                    this.blockBody(true);
                     
                     //Prevent undefined object
                     if (typeof altOpts.opt !== "object") 
@@ -463,8 +489,8 @@
                     altBox.appendChild(altHd);
                     altBox.appendChild(altBdy);
                     altBox.appendChild(altFt);
+                    modal.appendChild(altBox);
                     altUi.appendChild(modal);
-                    altUi.appendChild(altBox);
                     
                     //Set Event close modal
                     if(altOpts.opt["modal-close"] && altOpts.type === 'alert')
@@ -565,7 +591,7 @@
                         content : content, 
                         onok    : onOk,
                         opt     : option
-                    }; Generate.message(alertConfig);
+                    }; _$generate_.message(alertConfig);
                 },
                 
                 // return alertui CONFIRM;
@@ -577,7 +603,7 @@
                         onok     : onOk,
                         oncancel : onCancel,
                         opt      : option
-                    }; Generate.message(alertConfig);
+                    }; _$generate_.message(alertConfig);
                 },
                 
                 // return alertui PROMPT
@@ -590,7 +616,7 @@
                         oncancel : onCancel,
                         defvalue : defValue,
                         opt      : option
-                    }; Generate.message(alertConfig);
+                    }; _$generate_.message(alertConfig);
                 },
                 
                 // return alertui LOAD
@@ -599,7 +625,7 @@
                         type: 'load',
                         content  : content,
                         onload   : onLoad
-                    }; Generate.message(alertConfig);
+                    }; _$generate_.message(alertConfig);
                 },
                 
                 // return alertui NOTIFICATION
@@ -607,7 +633,7 @@
                     noteConfig = {
                         noteType : noteType, 
                         content  : content,
-                    }; Generate.note(noteConfig);
+                    }; _$generate_.note(noteConfig);
                 },
         };
     }
