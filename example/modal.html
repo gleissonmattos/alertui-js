@@ -79,6 +79,17 @@
             vertical-align: middle;
             margin-right: 14px;
         }
+        
+        .bt-example {
+            border-radius: 0 !important;
+            width: 100%;
+            margin: 1.5rem 0 0 0 !important;
+            padding: .8rem 1rem !important;
+            background: cornflowerblue;
+            color: #fff !important;
+            font-size: 1rem;
+            font-weight: 100 !important;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
 </head>
@@ -88,7 +99,7 @@
         <div class="demo-present">
             <h1>Alert<span>Ui</span>.Js Modal</h1>
             <p> AlertUiJs is a awesome javascript framework to increase experience and interaction of users in applications.</p>
-        </div><button class="alert-to" data-modal="modalOne">Modal one</button><button class="alert-to" data-modal="modalTwo">Modal two</button>
+        </div><button class="alert-to" data-modal="modalOne">Modal one</button><button class="alert-to" data-modal="modalTwo">Modal two</button><button class="alert-to" data-modal="modalThree">Modal Three</button>
         <div class="alert-ui" id="modalOne">
             <div class="altui-modal">
                 <div class="altui-dialog">
@@ -106,6 +117,13 @@
                     <div class="altui-body">This is message dialog</div>
                     <div class="altui-footer"><button class="alt-btn alt-default altui-close">Close</button></div>
                 </div>
+            </div>
+        </div>
+        <div class="alert-ui" id="modalThree">
+            <div class="altui-modal">
+                <div class="altui-dialog" style="max-width: 28em">
+                    <div class="altui-header">New Project</div>
+                    <div class="altui-body"><input class="alt-input" type="text" placeholder="Project name">This is message dialog</div><button class="bt-example altui-close">Create new project</button></div>
             </div>
         </div>
         <div class="footer-present">

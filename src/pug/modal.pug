@@ -10,6 +10,7 @@ include includes/head.pug
                 
         button.alert-to(data-modal='modalOne') Modal one
         button.alert-to(data-modal='modalTwo') Modal two
+        button.alert-to(data-modal='modalThree') Modal Three
         
         .alert-ui#modalOne
             .altui-modal
@@ -27,13 +28,23 @@ include includes/head.pug
                         
         .alert-ui#modalTwo
             .altui-modal
-                .altui-dialog
+                .altui-dialog 
                     .altui-header
                         | Title dialog 2
                     .altui-body
                         | This is message dialog
                     .altui-footer
                         button.alt-btn.alt-default.altui-close Close
+        
+        .alert-ui#modalThree
+            .altui-modal
+                .altui-dialog(style='max-width: 28em')
+                    .altui-header
+                        | New Project
+                    .altui-body
+                        input(type="text" class="alt-input" placeholder="Project name")
+                        | This is message dialog
+                    button.bt-example.altui-close Create new project
             
         .footer-present
             a(href="https://github.com/gleissonmattos") 

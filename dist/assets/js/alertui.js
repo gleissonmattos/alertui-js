@@ -617,10 +617,12 @@
                  * @param mdl {object} -- Object modal
                  */
                 function close(mdl) {
-                    mdl.classList.add('alert-close');
-                    setTimeout(function() {
-                        mdl.classList.remove('show', 'alert-close');
-                    }, callTime);
+                    if (event.target.matches('.altui-modal, .altui-close')) {
+                        mdl.classList.add('alert-close');
+                        setTimeout(function() {
+                            mdl.classList.remove('show', 'alert-close');
+                        }, callTime);
+                    }
                 }
 
                 /**
@@ -629,14 +631,24 @@
                  */
                 function setActions(mdl) {
                     var cBt,
+                        mEl,
                         i;
+
                     cBt = mdl.getElementsByClassName('altui-close');
+                    mEl = mdl.getElementsByClassName('altui-modal')[0];
+
                     for (i = 0; i < cBt.length; i++) {
                         /* Set close modal event */
                         proto.addEvent(cBt[i], 'click', function() {
                             close(mdl);
                         });
                     }
+
+                    proto.addEvent(mEl, 'click', function(event) {
+                        if (event.target.matches('.altui-modal')) {
+                            close(mdl);
+                        }
+                    });
                 }
 
                 /* Initialize modal */
