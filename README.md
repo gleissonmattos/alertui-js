@@ -60,6 +60,8 @@ alertui.notify('success', 'Your message here');
 
 ## Examples
 
+### 1. Dialogs
+
 ##### Alertui ALERT
 ![screenshot](docs/alertui-alert.png) 
 
@@ -221,14 +223,61 @@ alertui.confirm('Title dialog',
     }
 );
 ```
+### 2. Modal ```NEW```
+Modalities are flexible, customizable and easy to use. The basic code follows the same pattern as the standard.
+Just use the code in your html document
+
+```html
+<!-- Modal -->
+<div class="alert-ui" id="modalExample">
+    <div class="altui-modal">
+        <div class="altui-dialog">
+            <div class="altui-cmd">
+                <button class="altui-close">×</button>
+            </div>
+            <!-- Modal header-->
+            <div class="altui-header">
+                Title dialog 
+            </div>
+            <!-- Modal body -->
+            <div class="altui-body">
+                This is message dialog 
+            <!-- Modal footer -->
+            <div class="altui-footer">
+                <button class="alt-btn alt-default altui-close">Close</button>
+                <button class="alt-btn alt-primary">Button example</button></div>
+        </div>
+    </div>
+</div>
+```
+
+To display the modal use the ```.alert-to``` selector in your class attribute on the element that will call the dialog.
+Um atributo data (```data-modal```) deve ser usado com o valor contendo a identificação do referido modal
+
+```html
+<!-- Modal -->
+<button class="alert-to" data-modal="modalExample">Show modal</button>
+```
+
+
+Enter an element within your modal with the ```.altui-close``` selector so that when clicked close the modal.
+
+```html
+<button class="altui-close">Close modal</button>
+```
+
+Modals can also be closed using the default function by passing the modal id attribute as parameter.
+
+```javascript 
+alertui.modalClose('modalExample')
+```
 
 ## Contributions
 To Contribute is indispensable keep the Standard. Implement From the Files the src folder via Gulp automator and technologies Pug and SCSS files. Use npm to install the modules. ```npm install``` inside the project. 
 
-## News [version 1.2.6]
-- New AlertUi Load()
-- Improved design
-- Fix bugs
+## News [version 1.3.1]
+- New AlertUi MODAL
+- Auto scrollbar
 
 License
 =======

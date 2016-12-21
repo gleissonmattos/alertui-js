@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700);
+@import "dependences/font.scss";
 @import "dependences/mixins.scss";
 @import "dependences/variables.scss";
 
@@ -17,7 +17,7 @@
     width: 100%;
     height: 100%;
     font-family: $font-opensans;
-    z-index: 99999999;
+    z-index: $up-zindex;
     
     &.show {
         display: block;    
@@ -30,7 +30,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(32, 34, 37, .8);
+        background: $bg-modal;
         overflow: auto;
         @include animation (0s, .2s, fadeIn, 1);
     }    
@@ -41,7 +41,8 @@
         max-width: 36em;
         margin: 12em auto 12em auto;
         border-radius: 3px;
-        background-color: #fff;
+        background-color: $bg-dialog;
+        overflow: hidden;
         @include animation (0s, $time-animation, alertUiIn, 1);
         @include box-shadow (0, 19px, 38px, rgba(0, 0, 0, 0.1), false);
         
@@ -72,14 +73,14 @@
         }
         
         .altui-header {
-            padding: 13px 30px 13px;
+            padding: $pd-dlg-header;
             font-weight: 600;
             font-size: 1.1rem;
             color: #56595f;
         }
         
         .altui-body {
-            padding: 8px 30px 8px;
+            padding: $pd-dlg-body;
             font-size: .816rem;
             color: #727782;
             
@@ -94,7 +95,6 @@
                 outline: none;
                 font-size: 16px;
                 color: #3a3b3c;
-                text-indent: 9px;
                 
                 &:focus {
                     border-color: $p_color;
@@ -119,7 +119,7 @@
         }
         
         .altui-footer {
-            padding: 12px 25px 12px 25px;
+            padding: $pd-dlg-footer;
             text-align: right;
         }
     }

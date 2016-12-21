@@ -107,7 +107,7 @@
     */
     function Alertui() {
         //vars and default values
-        var same
+        var sM
           , alertConfig                // Object config the alertui functions
           , noteConfig                 // Object config the alertui notifications
           , btOkv = 'Ok'              // Default button primary
@@ -116,6 +116,8 @@
           , noteTime = 4300        // Time default the exhibition the note
           , block = false         // Var 'block' to prevent doble clicks in actions
           , _$generate_;
+          
+          sM = this;
           
           /* Generator */
           _$generate_ = {
@@ -593,12 +595,28 @@
                     }
                     
                     /**
+                    * Block body element
+                    * @param flg {boolean} -- Block body or no (true/false)
+                    */
+                    function modalBlock(flg){
+                        var elBdy;
+                        elBdy = document.body;
+                        
+                        /* Set style */
+                        flg 
+                        ?  elBdy.style.overflow = 'hidden' 
+                        : elBdy.style.overflow = ''; 
+                    }
+                    
+                    /**
                     * Show modal
                     * @param same {object} -- This object
                     */
                     function show(same){
                         var mId,
                             mdEl;
+                            
+                        modalBlock(true);
                             
                         mId = same.dataset.modal;
                         mdEl = document.getElementById(mId);
@@ -613,6 +631,7 @@
                     */
                     function close(mdl){
                         if (event.target.matches('.altui-modal, .altui-close')) {
+                            modalBlock(false);
                             mdl.classList.add('alert-close');
                             setTimeout(function(){
                                mdl.classList.remove('show', 'alert-close'); 

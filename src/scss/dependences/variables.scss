@@ -7,3 +7,10 @@ $break-mobile: 479px;
 $time-animation: .3s;
 $type-transition: ease-in-out;
 $url-close-icon: "../img/alertui-close.png";
+/* stylesheets */
+$up-zindex: 99999999;
+$bg-modal: rgba(32, 34, 37, .8);
+$bg-dialog: #fff;
+$pd-dlg-header: 13px 30px 13px;
+$pd-dlg-body: 8px 30px 8px;
+$pd-dlg-footer: 12px 25px 12px 25px;
