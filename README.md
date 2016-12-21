@@ -252,7 +252,7 @@ Just use the code in your html document
 ```
 
 To display the modal use the ```.alert-to``` selector in your class attribute on the element that will call the dialog.
-Um atributo data (```data-modal```) deve ser usado com o valor contendo a identificação do referido modal
+One data attribute (```data-modal```) must be used with the value containing the identification of said modal.
 
 ```html
 <!-- Modal -->
