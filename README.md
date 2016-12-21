@@ -244,10 +244,12 @@ Check [example](https://rawgit.com/gleissonmattos/alertui-js/master/example/moda
             <!-- Modal body -->
             <div class="altui-body">
                 This is message dialog 
+            </div>
             <!-- Modal footer -->
             <div class="altui-footer">
                 <button class="alt-btn alt-default altui-close">Close</button>
-                <button class="alt-btn alt-primary">Button example</button></div>
+                <button class="alt-btn alt-primary">Button example</button>
+            </div>
         </div>
     </div>
 </div>
