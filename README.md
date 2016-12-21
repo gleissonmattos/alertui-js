@@ -227,6 +227,8 @@ alertui.confirm('Title dialog',
 Modalities are flexible, customizable and easy to use. The basic code follows the same pattern as the standard.
 Just use the code in your html document
 
+Check [example](https://rawgit.com/gleissonmattos/alertui-js/master/example/modal.html)
+
 ```html
 <!-- Modal -->
 <div class="alert-ui" id="modalExample">
