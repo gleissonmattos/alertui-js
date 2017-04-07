@@ -1,10 +1,11 @@
 AlertUi.js
 ===============================
+[![N|Solid](https://img.shields.io/badge/release-v1.3.3-blue.svg)](https://github.com/gleissonmattos/alertui-js/releases)
 
 Awesome javascript framework to increase experience and interaction of users in applications. 
 Change the browser alert dialogs for one clean, beautiful and modern dialog. 
 The Alertui.js is of easy usage. You only need execute the code in your function event
-Check [DEMO here](https://rawgit.com/gleissonmattos/alertui-js/master/example/index.html)
+Check [DEMO here](https://gleissonmattos.github.io/alertui-js/example)
 ![screenshot](docs/ui-project.jpg) 
 
 ## Install
