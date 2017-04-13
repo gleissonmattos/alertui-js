@@ -1,6 +1,6 @@
 AlertUi.js
 ===============================
-[![N|Solid](https://img.shields.io/badge/release-v1.3.3-blue.svg)](https://github.com/gleissonmattos/alertui-js/releases)
+[![N|Solid](https://img.shields.io/badge/release-v1.3.8-blue.svg)](https://github.com/gleissonmattos/alertui-js/releases)
 
 Awesome javascript framework to increase experience and interaction of users in applications. 
 Change the browser alert dialogs for one clean, beautiful and modern dialog. 
@@ -15,7 +15,7 @@ Check [DEMO here](https://gleissonmattos.github.io/alertui-js/example)
   npm install gleissonmattos/alertui-js
 ```
 
-* Or you can just clone from GitHub. [Download (v1.3.3)](https://github.com/gleissonmattos/alertui-js/archive/v1.3.3.zip).
+* Or you can just clone from GitHub. [Download (v1.3.8)](https://github.com/gleissonmattos/alertui-js/archive/v1.3.8.zip).
 
 
 ## Integration
