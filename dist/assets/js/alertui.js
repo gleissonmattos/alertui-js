@@ -31,6 +31,14 @@
             el.className = added;
         },
 
+        getEvent: function(e) {
+            if (e.target) {
+                return e.target;
+            } else if (e.srcElement) {
+                return e.srcElement;
+            }
+        },
+
         /**
          * Remove the class from element
          * @param el {Object}   -- element.
@@ -167,11 +175,13 @@
 
                 var reqValue;
 
-                proto.addEvent(el, 'click', function(event) {
+                proto.addEvent(el, 'click', function(e) {
                     _$generate_.blockBody(false);
 
+                    var tar = e.target ? e.target : proto.getEvent(e);
+                    var matches = tar.matches ? tar.matches('.altui-modal, .alt-btn, .altui-close') : tar.msMatchesSelector('.altui-modal, .alt-btn, .altui-close');
                     /* Prevent dialog click*/
-                    if (event.target.matches('.altui-modal, .alt-btn, .altui-close')) {
+                    if (matches) {
 
                         //Get input value
                         reqValue = elDataIn.value;
@@ -208,11 +218,14 @@
              */
             alertResponse: function(el, call, alertEl) {
 
-                proto.addEvent(el, 'click', function(event) {
+                proto.addEvent(el, 'click', function(e) {
                     _$generate_.blockBody(false);
 
+                    var tar = e.target ? e.target : proto.getEvent(e);
+                    var matches = tar.matches ? tar.matches('.altui-modal, .alt-btn, .altui-close') : tar.msMatchesSelector('.altui-modal, .alt-btn, .altui-close');
+
                     /* Prevent dialog click*/
-                    if (event.target.matches('.altui-modal, .alt-btn, .altui-close')) {
+                    if (matches) {
 
                         //Prevent doble click
                         if (block) return false;
@@ -635,12 +648,17 @@
                  * Close modal
                  * @param mdl {object} -- Object modal
                  */
-                function close(mdl) {
-                    if (event.target.matches('.altui-modal, .altui-close')) {
+                function close(e, mdl) {
+
+                    var tar = e.target ? e.target : proto.getEvent(e);
+                    var matches = tar.matches ? tar.matches('.altui-modal, .altui-close') : tar.msMatchesSelector('.altui-modal, .altui-close');
+
+                    if (matches) {
                         modalBlock(false);
                         mdl.classList.add('alert-close');
                         setTimeout(function() {
-                            mdl.classList.remove('show', 'alert-close');
+                            mdl.classList.remove('alert-close');
+                            mdl.classList.remove('show');
                         }, callTime);
                     }
                 }
@@ -659,14 +677,17 @@
 
                     for (i = 0; i < cBt.length; i++) {
                         /* Set close modal event */
-                        proto.addEvent(cBt[i], 'click', function() {
-                            close(mdl);
+                        proto.addEvent(cBt[i], 'click', function(e) {
+                            close(e, mdl);
                         });
                     }
 
-                    proto.addEvent(mEl, 'click', function(event) {
-                        if (event.target.matches('.altui-modal')) {
-                            close(mdl);
+                    proto.addEvent(mEl, 'click', function(e) {
+                        var tar = e.target ? e.target : proto.getEvent(e);
+                        var matches = tar.matches ? tar.matches('.altui-modal') : tar.msMatchesSelector('.altui-modal');
+
+                        if (matches) {
+                            close(e, mdl);
                         }
                     });
                 }
